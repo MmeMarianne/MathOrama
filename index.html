@@ -7,75 +7,67 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:system-ui,sans-serif;background:#f4f3ff;color:#1a1a2e;min-height:100vh;}
-
-/* ─── COULEURS ─── */
 :root{
   --purple:#534AB7;--purple-dark:#3C3489;--purple-light:#EEEDFE;--purple-mid:#CECBF6;
   --green:#3B6D11;--green-light:#EAF3DE;--green-mid:#C0DD97;
   --amber:#854F0B;--amber-light:#FAEEDA;--amber-mid:#FAC775;
   --red:#A32D2D;--red-light:#FCEBEB;
-  --teal:#0F6E56;--teal-light:#E1F5EE;
   --gray:#5F5E5A;--gray-light:#F1EFE8;--gray-mid:#D3D1C7;
-  --white:#ffffff;--border:#e0dff8;--bg:#f4f3ff;
-  --text:#1a1a2e;--text-muted:#5a5975;
+  --white:#ffffff;--border:#e0dff8;--text:#1a1a2e;--text-muted:#5a5975;
 }
+.screen{display:none;min-height:100vh;}.screen.active{display:block;}
 
-/* ─── LAYOUT ─── */
-.screen{display:none;min-height:100vh;}
-.screen.active{display:block;}
-
-/* ─── LOGIN ─── */
+/* LOGIN */
 .login-page{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:1rem;}
 .login-box{background:var(--white);border-radius:20px;padding:2.5rem 2rem;width:100%;max-width:400px;box-shadow:0 4px 24px rgba(83,74,183,0.10);}
 .logo{text-align:center;margin-bottom:2rem;}
 .logo-star{font-size:52px;display:block;margin-bottom:0.5rem;}
 .logo h1{font-size:2rem;font-weight:700;color:var(--purple);letter-spacing:-0.5px;}
 .logo p{font-size:14px;color:var(--text-muted);margin-top:4px;}
-.login-box h2{font-size:1.2rem;font-weight:600;margin-bottom:1.5rem;color:var(--text);}
-.field{margin-bottom:1rem;}
-.field label{display:block;font-size:13px;font-weight:500;color:var(--text-muted);margin-bottom:6px;}
-.field input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;color:var(--text);background:var(--white);outline:none;transition:border 0.2s;}
-.field input:focus{border-color:var(--purple);}
-.btn-main{width:100%;padding:13px;background:var(--purple);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;margin-top:0.5rem;transition:background 0.2s;}
-.btn-main:hover{background:var(--purple-dark);}
-.error-msg{color:var(--red);font-size:13px;margin-top:0.5rem;display:none;padding:8px 12px;background:var(--red-light);border-radius:8px;}
-.teacher-link{text-align:center;margin-top:1.25rem;}
+.login-box h2{font-size:1.15rem;font-weight:600;margin-bottom:0.6rem;color:var(--text);}
+.login-hint{font-size:13px;color:var(--text-muted);margin-bottom:1.75rem;line-height:1.6;}
+.btn-google{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:13px;background:var(--white);color:var(--text);border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.2s,border-color 0.2s;}
+.btn-google:hover{background:var(--purple-light);border-color:var(--purple);}
+.btn-google:disabled{opacity:0.6;cursor:not-allowed;}
+.login-spinner{text-align:center;padding:1rem;font-size:14px;color:var(--text-muted);display:none;}
+.error-msg{color:var(--red);font-size:13px;margin-top:0.75rem;padding:8px 12px;background:var(--red-light);border-radius:8px;display:none;}
+.teacher-link{text-align:center;margin-top:2rem;}
 .teacher-link a{font-size:13px;color:var(--text-muted);cursor:pointer;text-decoration:underline;}
 .teacher-link a:hover{color:var(--purple);}
 
-/* ─── DASHBOARD ─── */
+/* DASHBOARD */
 .dash-page{max-width:900px;margin:0 auto;padding:1.5rem 1rem 3rem;}
 .dash-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.5rem;}
 .dash-topbar h1{font-size:1.4rem;font-weight:700;color:var(--purple);}
 .welcome{font-size:14px;color:var(--text-muted);}
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.user-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid var(--purple-mid);display:none;}
 .btn-sm{padding:8px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;background:var(--white);cursor:pointer;color:var(--text-muted);font-weight:500;}
 .btn-sm:hover{background:var(--gray-light);border-color:var(--gray-mid);}
-
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.75rem;}
 .stat{background:var(--white);border-radius:14px;padding:1rem;text-align:center;border:1.5px solid var(--border);}
 .stat-num{font-size:2rem;font-weight:700;color:var(--purple);}
 .stat-lbl{font-size:12px;color:var(--text-muted);margin-top:2px;}
-
 .etape-section{margin-bottom:1.5rem;}
 .etape-header{display:flex;align-items:center;gap:10px;margin-bottom:0.75rem;}
 .etape-badge{background:var(--purple-light);color:var(--purple-dark);font-size:12px;font-weight:600;padding:4px 12px;border-radius:99px;border:1px solid var(--purple-mid);}
 .etape-title-text{font-size:15px;font-weight:600;color:var(--text);}
-
 .notions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;}
-.notion-card{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:1rem;cursor:pointer;position:relative;transition:border-color 0.2s,box-shadow 0.2s;}
+.notion-card{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:1rem;cursor:pointer;transition:border-color 0.2s,box-shadow 0.2s;}
 .notion-card:hover{border-color:var(--purple);box-shadow:0 2px 12px rgba(83,74,183,0.12);}
 .notion-card.done{background:var(--green-light);border-color:var(--green);}
-.notion-card.done:hover{border-color:var(--green);box-shadow:0 2px 12px rgba(59,109,17,0.12);}
+.notion-card.done:hover{box-shadow:0 2px 12px rgba(59,109,17,0.12);}
 .notion-card.exam{background:var(--amber-light);border-color:var(--amber);cursor:default;}
 .nc-sem{font-size:11px;color:var(--text-muted);font-weight:500;margin-bottom:5px;}
 .nc-title{font-size:13px;font-weight:600;color:var(--text);line-height:1.4;}
 .notion-card.done .nc-title{color:var(--green);}
 .notion-card.exam .nc-title{color:var(--amber);}
-.score-pill{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;background:var(--green-mid);color:var(--green);border:1px solid var(--green);}
-.score-pill.amber{background:var(--amber-mid);color:var(--amber);border-color:var(--amber);}
-.score-pill.red{background:var(--red-light);color:var(--red);border-color:var(--red);}
+.score-pill{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;}
+.pill-g{background:var(--green-mid);color:var(--green);border:1px solid var(--green);}
+.pill-a{background:var(--amber-mid);color:var(--amber);border:1px solid var(--amber);}
+.pill-r{background:var(--red-light);color:var(--red);border:1px solid var(--red);}
 
-/* ─── QUIZ ─── */
+/* QUIZ */
 .quiz-page{max-width:680px;margin:0 auto;padding:1.5rem 1rem 3rem;}
 .quiz-topbar{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap;}
 .quiz-meta h2{font-size:1.1rem;font-weight:700;color:var(--purple);line-height:1.3;}
@@ -97,7 +89,7 @@ body{font-family:system-ui,sans-serif;background:#f4f3ff;color:#1a1a2e;min-heigh
 .btn-next{display:none;margin-top:1rem;padding:11px 24px;background:var(--purple);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;}
 .btn-next:hover{background:var(--purple-dark);}
 
-/* ─── RÉSULTAT ─── */
+/* RÉSULTAT */
 .result-page{max-width:500px;margin:0 auto;padding:3rem 1rem;}
 .result-box{background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:2.5rem;text-align:center;}
 .result-emoji{font-size:60px;margin-bottom:1rem;}
@@ -105,18 +97,22 @@ body{font-family:system-ui,sans-serif;background:#f4f3ff;color:#1a1a2e;min-heigh
 .result-fraction{font-size:16px;color:var(--text-muted);margin-top:4px;}
 .result-msg{font-size:16px;color:var(--text);margin:1rem 0 1.75rem;line-height:1.5;}
 .result-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.btn-main{padding:13px 20px;background:var(--purple);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;}
+.btn-main:hover{background:var(--purple-dark);}
 .btn-outline{padding:11px 20px;border:1.5px solid var(--border);border-radius:10px;background:var(--white);font-size:14px;font-weight:600;cursor:pointer;color:var(--text);}
 .btn-outline:hover{background:var(--gray-light);}
 
-/* ─── ENSEIGNANTE ─── */
+/* ENSEIGNANTE */
 .teacher-page{max-width:1000px;margin:0 auto;padding:1.5rem 1rem 3rem;}
 .teacher-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.5rem;}
 .teacher-topbar h1{font-size:1.4rem;font-weight:700;color:var(--purple);}
-
 .pw-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(83,74,183,0.08);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:100;}
 .pw-box{background:var(--white);border-radius:20px;padding:2rem;width:100%;max-width:360px;box-shadow:0 8px 32px rgba(83,74,183,0.15);}
 .pw-box h2{font-size:1.2rem;font-weight:600;margin-bottom:1.25rem;}
-
+.field{margin-bottom:1rem;}
+.field label{display:block;font-size:13px;font-weight:500;color:var(--text-muted);margin-bottom:6px;}
+.field input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;color:var(--text);background:var(--white);outline:none;transition:border 0.2s;}
+.field input:focus{border-color:var(--purple);}
 .table-wrap{overflow-x:auto;background:var(--white);border:1.5px solid var(--border);border-radius:16px;}
 table{width:100%;border-collapse:collapse;font-size:13px;}
 th{padding:12px 14px;text-align:left;font-weight:600;color:var(--text-muted);border-bottom:1.5px solid var(--border);background:var(--gray-light);}
@@ -128,7 +124,6 @@ tr:hover td{background:var(--purple-light);}
 .pill-amber{background:var(--amber-light);color:var(--amber);border:1px solid var(--amber);}
 .pill-red{background:var(--red-light);color:var(--red);border:1px solid var(--red);}
 .pill-gray{background:var(--gray-light);color:var(--gray);border:1px solid var(--gray-mid);}
-
 .detail-row{display:flex;flex-wrap:wrap;gap:6px;}
 .loading{text-align:center;padding:2rem;color:var(--text-muted);}
 .note-info{font-size:12px;color:var(--text-muted);margin-top:1rem;padding:10px 14px;background:var(--purple-light);border-radius:8px;border:1px solid var(--purple-mid);}
@@ -142,9 +137,7 @@ tr:hover td{background:var(--purple-light);}
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     ÉCRAN 1 : CONNEXION ÉLÈVE
-══════════════════════════════════════ -->
+<!-- ÉCRAN 1 : CONNEXION -->
 <div class="screen active" id="screen-login">
   <div class="login-page">
     <div class="login-box">
@@ -153,29 +146,20 @@ tr:hover td{background:var(--purple-light);}
         <h1>MathOrama</h1>
         <p>4e année — Classe Mennais</p>
       </div>
-      <h2>Bonjour! C'est qui? 👋</h2>
-      <div class="field">
-        <label>Ton prénom</label>
-        <input type="text" id="inp-prenom" placeholder="Ex: Léa" autocomplete="off"/>
-      </div>
-      <div class="field">
-        <label>Première lettre de ton nom de famille</label>
-        <input type="text" id="inp-nom" placeholder="Ex: T" maxlength="1" autocomplete="off"/>
-      </div>
-      <div class="field">
-        <label>Code de classe</label>
-        <input type="text" id="inp-code" placeholder="Donné par ton enseignante" autocomplete="off"/>
-      </div>
-      <div class="error-msg" id="err-login">Mauvais code de classe. Demande à ton enseignante!</div>
-      <button class="btn-main" id="btn-login">C'est parti! 🚀</button>
+      <h2>Connecte-toi pour accéder à tes activités 👋</h2>
+      <p class="login-hint">Utilise le compte Google que ton école t'a donné.</p>
+      <button class="btn-google" id="btn-google">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Se connecter avec Google
+      </button>
+      <div class="login-spinner" id="login-spinner">Connexion en cours…</div>
+      <div class="error-msg" id="err-login">Une erreur est survenue. Réessaie ou demande à ton enseignante.</div>
       <div class="teacher-link"><a id="link-teacher">Accès enseignante →</a></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     ÉCRAN 2 : TABLEAU DE BORD ÉLÈVE
-══════════════════════════════════════ -->
+<!-- ÉCRAN 2 : TABLEAU DE BORD -->
 <div class="screen" id="screen-dash">
   <div class="dash-page">
     <div class="dash-topbar">
@@ -183,7 +167,10 @@ tr:hover td{background:var(--purple-light);}
         <h1>⭐ MathOrama</h1>
         <div class="welcome" id="welcome-txt"></div>
       </div>
-      <button class="btn-sm" id="btn-logout">Déconnexion</button>
+      <div class="topbar-right">
+        <img class="user-avatar" id="user-avatar" src="" alt=""/>
+        <button class="btn-sm" id="btn-logout">Déconnexion</button>
+      </div>
     </div>
     <div class="stats-row">
       <div class="stat"><div class="stat-num" id="stat-done">0</div><div class="stat-lbl">Notions terminées</div></div>
@@ -194,9 +181,7 @@ tr:hover td{background:var(--purple-light);}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     ÉCRAN 3 : QUIZ
-══════════════════════════════════════ -->
+<!-- ÉCRAN 3 : QUIZ -->
 <div class="screen" id="screen-quiz">
   <div class="quiz-page">
     <div class="quiz-topbar">
@@ -211,9 +196,7 @@ tr:hover td{background:var(--purple-light);}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     ÉCRAN 4 : RÉSULTAT
-══════════════════════════════════════ -->
+<!-- ÉCRAN 4 : RÉSULTAT -->
 <div class="screen" id="screen-result">
   <div class="result-page">
     <div class="result-box">
@@ -223,25 +206,23 @@ tr:hover td{background:var(--purple-light);}
       <div class="result-msg" id="res-msg"></div>
       <div class="result-btns">
         <button class="btn-outline" id="btn-retry">Réessayer 🔄</button>
-        <button class="btn-main" id="btn-to-dash" style="width:auto;padding:11px 20px;">Mes activités 🏠</button>
+        <button class="btn-main" id="btn-to-dash">Mes activités 🏠</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     ÉCRAN 5 : HUB ENSEIGNANTE
-══════════════════════════════════════ -->
+<!-- ÉCRAN 5 : HUB ENSEIGNANTE -->
 <div class="screen" id="screen-teacher">
   <div id="pw-overlay-wrap" class="pw-overlay">
     <div class="pw-box">
       <h2>🔐 Accès enseignante</h2>
-      <div class="field">
+      <div class="field" style="margin-top:1rem;">
         <label>Mot de passe</label>
         <input type="password" id="inp-pw" placeholder="Mot de passe"/>
       </div>
       <div class="error-msg" id="err-pw">Mot de passe incorrect.</div>
-      <button class="btn-main" id="btn-pw">Entrer</button>
+      <button class="btn-main" id="btn-pw" style="width:100%;margin-top:0.5rem;">Entrer</button>
       <div class="teacher-link" style="margin-top:1rem;"><a id="link-back-to-login">← Retour à l'accueil</a></div>
     </div>
   </div>
@@ -253,34 +234,33 @@ tr:hover td{background:var(--purple-light);}
       </div>
       <button class="btn-sm" id="btn-teacher-back">← Retour à l'accueil</button>
     </div>
-    <div id="teacher-content"><div class="loading">Chargement des données...</div></div>
+    <div id="teacher-content"><div class="loading">Chargement…</div></div>
   </div>
 </div>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import {
-  getFirestore, doc, setDoc, getDoc, getDocs,
-  collection, updateDoc, serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { initializeApp }   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc, getDocs, collection, updateDoc, serverTimestamp }
+                           from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+                           from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDIJAy8ObBV6BeaIXJjrMkCfvtY4S7xBcM",
-  authDomain: "sitemath-197b3.firebaseapp.com",
-  projectId: "sitemath-197b3",
-  storageBucket: "sitemath-197b3.firebasestorage.app",
+const app = initializeApp({
+  apiKey:            "AIzaSyDIJAy8ObBV6BeaIXJjrMkCfvtY4S7xBcM",
+  authDomain:        "sitemath-197b3.firebaseapp.com",
+  projectId:         "sitemath-197b3",
+  storageBucket:     "sitemath-197b3.firebasestorage.app",
   messagingSenderId: "118958876405",
-  appId: "1:118958876405:web:e784ecf8e0d0a678e407bc"
-};
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+  appId:             "1:118958876405:web:e784ecf8e0d0a678e407bc"
+});
+const db       = getFirestore(app);
+const auth     = getAuth(app);
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({ prompt: 'select_account' });
 
-const CODE_CLASSE = "Mennais401";
-const MDP_ENSEIGNANTE = "Mennais4o!";
+const MDP = "Mennais4o!";
+const CODE = "Mennais401";
 
-// ══════════════════════════════════════
-// NOTIONS
-// ══════════════════════════════════════
 const NOTIONS = [
   {sem:1,  titre:"Nombres naturels — position, valeur, lire et écrire, compter par bonds", etape:1},
   {sem:2,  titre:"Nombres naturels — dénombrer, représenter, regrouper, combien de… dans…", etape:1},
@@ -321,668 +301,499 @@ const NOTIONS = [
   {sem:37, titre:"Masse, capacité + Décomposition en facteurs premiers", etape:3},
 ];
 
-// ══════════════════════════════════════
-// QUESTIONS (37 semaines)
-// Chaque question a: q, choices[], ans (index ou tableau d'index valides)
-// ══════════════════════════════════════
-const QUESTIONS = {
+const Q = {
 1:[
-  {q:"Quel est le chiffre des centaines dans 4 573?", choices:["4","5","7","3"], ans:1},
-  {q:"Quelle est la valeur du chiffre 6 dans 6 843?", choices:["6","60","600","6 000"], ans:3},
-  {q:"Comment écrit-on «quatre mille deux cent seize»?", choices:["4 126","4 216","4 261","4 612"], ans:1},
-  {q:"Compte par bonds de 100 à partir de 1 250. Quel est le 3e nombre obtenu?", choices:["1 350","1 450","1 550","1 650"], ans:2},
-  {q:"Quel chiffre est à la position des unités de mille dans 7 392?", choices:["7","3","9","2"], ans:0},
-  {q:"Comment lit-on le nombre 3 018?", choices:["Trois cent dix-huit","Trois mille dix-huit","Trois mille cent huit","Trente et un huit"], ans:1},
-  {q:"Compte par bonds de 1 000 à partir de 2 000. Quel est le 4e nombre?", choices:["5 000","6 000","4 000","3 000"], ans:1},
+  {q:"Quel est le chiffre des centaines dans 4 573?",choices:["4","5","7","3"],ans:1},
+  {q:"Quelle est la valeur du chiffre 6 dans 6 843?",choices:["6","60","600","6 000"],ans:3},
+  {q:"Comment écrit-on «quatre mille deux cent seize»?",choices:["4 126","4 216","4 261","4 612"],ans:1},
+  {q:"Compte par bonds de 100 à partir de 1 250. Quel est le 3e nombre obtenu?",choices:["1 350","1 450","1 550","1 650"],ans:2},
+  {q:"Quel chiffre est à la position des unités de mille dans 7 392?",choices:["7","3","9","2"],ans:0},
+  {q:"Comment lit-on le nombre 3 018?",choices:["Trois cent dix-huit","Trois mille dix-huit","Trois mille cent huit","Trente et un huit"],ans:1},
+  {q:"Compte par bonds de 1 000 à partir de 2 000. Quel est le 4e nombre?",choices:["5 000","6 000","4 000","3 000"],ans:1},
 ],
 2:[
-  {q:"Quel groupement représente 2 432?", choices:["2 unités de mille, 4 centaines, 3 dizaines, 2 unités","2 unités de mille, 3 centaines, 4 dizaines, 2 unités","4 unités de mille, 2 centaines, 3 dizaines","2 unités de mille, 4 centaines, 2 dizaines, 3 unités"], ans:0},
-  {q:"Combien y a-t-il de dizaines dans 530?", choices:["5","53","530","50"], ans:1},
-  {q:"Quel nombre est représenté par 3 unités de mille + 0 centaine + 5 dizaines + 8 unités?", choices:["3 058","3 508","3 580","358"], ans:0},
-  {q:"Combien de centaines dans 7 200?", choices:["7","72","720","7 200"], ans:1},
-  {q:"Combien d'unités dans 4 000?", choices:["4","40","400","4 000"], ans:3},
-  {q:"Dans 6 450, combien y a-t-il de dizaines en tout?", choices:["5","45","645","6 450"], ans:2},
-  {q:"Quel nombre a 8 unités de mille, 3 centaines et 2 dizaines?", choices:["8 320","8 032","8 302","832"], ans:0},
+  {q:"Quel groupement représente 2 432?",choices:["2 unités de mille, 4 centaines, 3 dizaines, 2 unités","2 unités de mille, 3 centaines, 4 dizaines, 2 unités","4 unités de mille, 2 centaines, 3 dizaines","2 unités de mille, 4 centaines, 2 dizaines, 3 unités"],ans:0},
+  {q:"Combien y a-t-il de dizaines dans 530?",choices:["5","53","530","50"],ans:1},
+  {q:"Quel nombre est représenté par 3 unités de mille + 0 centaine + 5 dizaines + 8 unités?",choices:["3 058","3 508","3 580","358"],ans:0},
+  {q:"Combien de centaines dans 7 200?",choices:["7","72","720","7 200"],ans:1},
+  {q:"Combien d'unités dans 4 000?",choices:["4","40","400","4 000"],ans:3},
+  {q:"Dans 6 450, combien y a-t-il de dizaines en tout?",choices:["5","45","645","6 450"],ans:2},
+  {q:"Quel nombre a 8 unités de mille, 3 centaines et 2 dizaines?",choices:["8 320","8 032","8 302","832"],ans:0},
 ],
 3:[
-  {q:"Lequel est le plus grand?", choices:["3 456","3 546","3 465","3 564"], ans:3},
-  {q:"Ordonne du plus petit au plus grand : 2 341, 2 143, 2 413", choices:["2 341 < 2 143 < 2 413","2 143 < 2 341 < 2 413","2 413 < 2 341 < 2 143","2 143 < 2 413 < 2 341"], ans:3},
-  {q:"Décompose 5 726 correctement :", choices:["5 000 + 700 + 20 + 6","5 000 + 700 + 26","5 000 + 726","500 + 72 + 6"], ans:0},
-  {q:"Quel signe convient? 8 052 __ 8 025", choices:["<",">","=","≈"], ans:1},
-  {q:"Quel nombre se situe entre 4 580 et 4 600?", choices:["4 575","4 590","4 605","4 500"], ans:1},
-  {q:"Quel est le plus petit : 9 001, 8 999 ou 9 010?", choices:["9 001","8 999","9 010","Ils sont égaux"], ans:1},
-  {q:"5 643 décomposé, c'est :", choices:["5 000+640+3","500+643","5 600+43","5 000+600+40+3"], ans:3},
+  {q:"Lequel est le plus grand?",choices:["3 456","3 546","3 465","3 564"],ans:3},
+  {q:"Ordonne du plus petit au plus grand : 2 341, 2 143, 2 413",choices:["2 341 < 2 143 < 2 413","2 143 < 2 341 < 2 413","2 413 < 2 341 < 2 143","2 143 < 2 413 < 2 341"],ans:3},
+  {q:"Décompose 5 726 correctement :",choices:["5 000 + 700 + 20 + 6","5 000 + 700 + 26","5 000 + 726","500 + 72 + 6"],ans:0},
+  {q:"Quel signe convient? 8 052 __ 8 025",choices:["<",">","=","≈"],ans:1},
+  {q:"Quel nombre se situe entre 4 580 et 4 600?",choices:["4 575","4 590","4 605","4 500"],ans:1},
+  {q:"Quel est le plus petit : 9 001, 8 999 ou 9 010?",choices:["9 001","8 999","9 010","Ils sont égaux"],ans:1},
+  {q:"5 643 décomposé, c'est :",choices:["5 000+640+3","500+643","5 600+43","5 000+600+40+3"],ans:3},
 ],
 4:[
-  {q:"Sur une droite numérique, quel nombre est à mi-chemin entre 3 400 et 3 600?", choices:["3 350","3 450","3 500","3 550"], ans:2},
-  {q:"Arrondi à la centaine près, 4 762 ≈ ?", choices:["4 700","4 800","5 000","4 760"], ans:1},
-  {q:"Quel nombre négatif est juste avant 0 sur la droite numérique?", choices:["-10","-2","-1","1"], ans:2},
-  {q:"Arrondi à la dizaine près, 3 285 ≈ ?", choices:["3 280","3 290","3 300","3 200"], ans:1},
-  {q:"Estime : 398 + 212 ≈ ?", choices:["500","600","700","400"], ans:1},
-  {q:"Quel nombre négatif est entre −3 et −1?", choices:["-4","0","-2","1"], ans:2},
-  {q:"Arrondi au millier près, 6 489 ≈ ?", choices:["6 000","6 400","6 500","7 000"], ans:0},
+  {q:"Sur une droite numérique, quel nombre est à mi-chemin entre 3 400 et 3 600?",choices:["3 350","3 450","3 500","3 550"],ans:2},
+  {q:"Arrondi à la centaine près, 4 762 ≈ ?",choices:["4 700","4 800","5 000","4 760"],ans:1},
+  {q:"Quel nombre négatif est juste avant 0 sur la droite numérique?",choices:["-10","-2","-1","1"],ans:2},
+  {q:"Arrondi à la dizaine près, 3 285 ≈ ?",choices:["3 280","3 290","3 300","3 200"],ans:1},
+  {q:"Estime : 398 + 212 ≈ ?",choices:["500","600","700","400"],ans:1},
+  {q:"Quel nombre négatif est entre −3 et −1?",choices:["-4","0","-2","1"],ans:2},
+  {q:"Arrondi au millier près, 6 489 ≈ ?",choices:["6 000","6 400","6 500","7 000"],ans:0},
 ],
 5:[
-  {q:"4 352 + 2 461 = ?", choices:["6 713","6 813","6 723","6 803"], ans:1},
-  {q:"7 845 − 3 523 = ?", choices:["4 322","4 232","4 312","4 222"], ans:0},
-  {q:"Marie avait 5 280 billes. Elle en donne 1 345. Combien lui reste-t-il?", choices:["3 935","3 845","4 035","3 945"], ans:0},
-  {q:"3 679 + 4 215 = ?", choices:["7 884","7 894","7 984","7 804"], ans:1},
-  {q:"Dans un problème d'addition ou de soustraction, comment choisit-on l'opération?", choices:["On additionne toujours","Si on cherche un total ou une réunion → +; si on cherche une différence ou ce qu'il reste → −","On soustrait toujours","On multiplie quand les nombres sont grands"], ans:1},
-  {q:"8 000 − 2 347 = ?", choices:["5 653","5 763","6 653","5 643"], ans:0},
-  {q:"Un stade a 6 432 places. 2 189 sont occupées. Combien sont libres?", choices:["4 243","4 143","4 343","8 621"], ans:0},
+  {q:"4 352 + 2 461 = ?",choices:["6 713","6 813","6 723","6 803"],ans:1},
+  {q:"7 845 − 3 523 = ?",choices:["4 322","4 232","4 312","4 222"],ans:0},
+  {q:"Marie avait 5 280 billes. Elle en donne 1 345. Combien lui reste-t-il?",choices:["3 935","3 845","4 035","3 945"],ans:0},
+  {q:"3 679 + 4 215 = ?",choices:["7 884","7 894","7 984","7 804"],ans:1},
+  {q:"Dans un problème, comment choisit-on + ou − ?",choices:["On additionne toujours","Total ou réunion → + ; différence ou reste → −","On soustrait toujours","On multiplie quand les nombres sont grands"],ans:1},
+  {q:"8 000 − 2 347 = ?",choices:["5 653","5 763","6 653","5 643"],ans:0},
+  {q:"Un stade a 6 432 places. 2 189 sont occupées. Combien sont libres?",choices:["4 243","4 143","4 343","8 621"],ans:0},
 ],
 6:[
-  {q:"Laquelle est une expression équivalente à 24?", choices:["3 × 9","25 − 2","4 × 6","20 + 5"], ans:2},
-  {q:"20 + 4 = 12 + ?", choices:["10","12","8","14"], ans:1},
-  {q:"Quelle expression est équivalente à 36?", choices:["6 × 5","7 × 4","4 × 9","8 × 5"], ans:2},
-  {q:"Si 3 × 8 = 24, alors 24 = ?", choices:["4 × 6","3 × 7","5 × 5","2 × 10"], ans:0},
-  {q:"Complète : 50 − 15 = 25 + ?", choices:["5","10","15","20"], ans:1},
-  {q:"Quelle paire d'expressions est équivalente?", choices:["10+10 et 4×5","3×7 et 4×6","5×5 et 20+6","2×12 et 3×8"], ans:[0,3]},
-  {q:"42 = ?", choices:["6 × 7","5 × 8","7 × 7","4 × 9"], ans:0},
+  {q:"Laquelle est une expression équivalente à 24?",choices:["3 × 9","25 − 2","4 × 6","20 + 5"],ans:2},
+  {q:"20 + 4 = 12 + ?",choices:["10","12","8","14"],ans:1},
+  {q:"Quelle expression est équivalente à 36?",choices:["6 × 5","7 × 4","4 × 9","8 × 5"],ans:2},
+  {q:"Si 3 × 8 = 24, alors 24 = ?",choices:["4 × 6","3 × 7","5 × 5","2 × 10"],ans:0},
+  {q:"Complète : 50 − 15 = 25 + ?",choices:["5","10","15","20"],ans:1},
+  {q:"Quelle paire d'expressions est équivalente?",choices:["10+10 et 4×5","3×7 et 4×6","5×5 et 20+6","2×12 et 3×8"],ans:[0,3]},
+  {q:"42 = ?",choices:["6 × 7","5 × 8","7 × 7","4 × 9"],ans:0},
 ],
 7:[
-  {q:"Quel type d'angle mesure exactement 90°?", choices:["Aigu","Obtus","Droit","Plat"], ans:2},
-  {q:"Un angle aigu mesure :", choices:["Exactement 90°","Plus de 90°","Moins de 90°","Exactement 180°"], ans:2},
-  {q:"Deux droites qui se croisent en formant 4 angles droits sont :", choices:["Parallèles","Perpendiculaires","Obliques","Sécantes seulement"], ans:1},
-  {q:"Des droites parallèles :", choices:["Se croisent toujours","Ne se croisent jamais","Forment un angle de 90°","Sont toujours verticales"], ans:1},
-  {q:"Un angle obtus mesure :", choices:["Moins de 90°","Exactement 90°","Entre 90° et 180°","180°"], ans:2},
-  {q:"Quel angle est représenté par le coin d'une feuille de papier?", choices:["Aigu","Droit","Obtus","Plat"], ans:1},
-  {q:"Des droites sécantes sont des droites qui :", choices:["Ne se rencontrent jamais","Se rencontrent en un point","Sont toujours perpendiculaires","Sont toujours parallèles"], ans:1},
+  {q:"Quel type d'angle mesure exactement 90°?",choices:["Aigu","Obtus","Droit","Plat"],ans:2},
+  {q:"Un angle aigu mesure :",choices:["Exactement 90°","Plus de 90°","Moins de 90°","Exactement 180°"],ans:2},
+  {q:"Deux droites qui se croisent en formant 4 angles droits sont :",choices:["Parallèles","Perpendiculaires","Obliques","Sécantes seulement"],ans:1},
+  {q:"Des droites parallèles :",choices:["Se croisent toujours","Ne se croisent jamais","Forment un angle de 90°","Sont toujours verticales"],ans:1},
+  {q:"Un angle obtus mesure :",choices:["Moins de 90°","Exactement 90°","Entre 90° et 180°","180°"],ans:2},
+  {q:"Quel angle est représenté par le coin d'une feuille de papier?",choices:["Aigu","Droit","Obtus","Plat"],ans:1},
+  {q:"Des droites sécantes sont des droites qui :",choices:["Ne se rencontrent jamais","Se rencontrent en un point","Sont toujours perpendiculaires","Sont toujours parallèles"],ans:1},
 ],
 8:[
-  {q:"Combien de côtés a un hexagone?", choices:["4","5","6","8"], ans:2},
-  {q:"Quel quadrilatère a 4 côtés égaux et 4 angles droits?", choices:["Rectangle","Losange","Trapèze","Carré"], ans:3},
-  {q:"Un triangle est un polygone avec :", choices:["2 côtés","3 côtés","4 côtés","5 côtés"], ans:1},
-  {q:"Lequel est un quadrilatère?", choices:["Triangle","Pentagone","Trapèze","Hexagone"], ans:2},
-  {q:"Un polygone est une figure :", choices:["Ouverte avec des droites","Fermée avec des segments","Ronde","Sans côtés"], ans:1},
-  {q:"Quel quadrilatère a 2 paires de côtés parallèles mais pas nécessairement des angles droits?", choices:["Carré","Rectangle","Parallélogramme","Trapèze"], ans:2},
-  {q:"Un pentagone a combien d'angles?", choices:["4","5","6","3"], ans:1},
+  {q:"Combien de côtés a un hexagone?",choices:["4","5","6","8"],ans:2},
+  {q:"Quel quadrilatère a 4 côtés égaux et 4 angles droits?",choices:["Rectangle","Losange","Trapèze","Carré"],ans:3},
+  {q:"Un triangle est un polygone avec :",choices:["2 côtés","3 côtés","4 côtés","5 côtés"],ans:1},
+  {q:"Lequel est un quadrilatère?",choices:["Triangle","Pentagone","Trapèze","Hexagone"],ans:2},
+  {q:"Un polygone est une figure :",choices:["Ouverte avec des droites","Fermée avec des segments","Ronde","Sans côtés"],ans:1},
+  {q:"Quel quadrilatère a 2 paires de côtés parallèles mais pas nécessairement des angles droits?",choices:["Carré","Rectangle","Parallélogramme","Trapèze"],ans:2},
+  {q:"Un pentagone a combien d'angles?",choices:["4","5","6","3"],ans:1},
 ],
 9:[
-  {q:"3 × 4 signifie :", choices:["3 + 4","3 groupes de 4","4 + 3 + 4","3 − 4"], ans:1},
-  {q:"Si 12 ÷ 3 = 4, alors 3 × 4 = ?", choices:["7","12","9","16"], ans:1},
-  {q:"Quel est le lien entre la multiplication et la division?", choices:["Elles donnent toujours le même résultat","Ce sont des opérations inverses","La multiplication est toujours plus grande","Elles s'annulent toujours"], ans:1},
-  {q:"24 ÷ 6 = ?", choices:["3","4","5","6"], ans:1},
-  {q:"Léa range 20 crayons dans des boîtes de 5. Combien de boîtes?", choices:["100","25","4","15"], ans:2},
-  {q:"Pour partager 36 en groupes de 9, on utilise :", choices:["36 + 9","36 − 9","36 × 9","36 ÷ 9"], ans:3},
-  {q:"8 × 7 = ?", choices:["54","56","64","48"], ans:1},
+  {q:"3 × 4 signifie :",choices:["3 + 4","3 groupes de 4","4 + 3 + 4","3 − 4"],ans:1},
+  {q:"Si 12 ÷ 3 = 4, alors 3 × 4 = ?",choices:["7","12","9","16"],ans:1},
+  {q:"Quel est le lien entre la multiplication et la division?",choices:["Elles donnent toujours le même résultat","Ce sont des opérations inverses","La multiplication est toujours plus grande","Elles s'annulent toujours"],ans:1},
+  {q:"24 ÷ 6 = ?",choices:["3","4","5","6"],ans:1},
+  {q:"Léa range 20 crayons dans des boîtes de 5. Combien de boîtes?",choices:["100","25","4","15"],ans:2},
+  {q:"Pour partager 36 en groupes de 9, on utilise :",choices:["36 + 9","36 − 9","36 × 9","36 ÷ 9"],ans:3},
+  {q:"8 × 7 = ?",choices:["54","56","64","48"],ans:1},
 ],
 10:[
-  {q:"34 × 2 = ?", choices:["62","68","64","72"], ans:1},
-  {q:"125 × 3 = ?", choices:["365","375","355","385"], ans:1},
-  {q:"213 × 4 = ?", choices:["842","852","862","812"], ans:1},
-  {q:"Une classe a 6 rangées de 24 pupitres. Combien de pupitres?", choices:["140","144","134","154"], ans:1},
-  {q:"312 × 3 = ?", choices:["906","936","916","903"], ans:1},
-  {q:"251 × 4 = ?", choices:["1 000","1 004","1 044","1 054"], ans:1},
-  {q:"Un livre a 148 pages. Combien de pages dans 3 livres?", choices:["444","434","454","440"], ans:0},
+  {q:"34 × 2 = ?",choices:["62","68","64","72"],ans:1},
+  {q:"125 × 3 = ?",choices:["365","375","355","385"],ans:1},
+  {q:"213 × 4 = ?",choices:["842","852","862","812"],ans:1},
+  {q:"Une classe a 6 rangées de 24 pupitres. Combien de pupitres?",choices:["140","144","134","154"],ans:1},
+  {q:"312 × 3 = ?",choices:["906","936","916","903"],ans:1},
+  {q:"251 × 4 = ?",choices:["1 000","1 004","1 044","1 054"],ans:1},
+  {q:"Un livre a 148 pages. Combien de pages dans 3 livres?",choices:["444","434","454","440"],ans:0},
 ],
 11:[
-  {q:"84 ÷ 4 = ?", choices:["20","21","22","24"], ans:1},
-  {q:"97 ÷ 3 = ? reste ?", choices:["32 reste 1","31 reste 2","32 reste 2","33 reste 0"], ans:0},
-  {q:"½ d'un groupe de 16, c'est :", choices:["4","6","8","10"], ans:2},
-  {q:"⅓ de 12, c'est :", choices:["2","3","4","6"], ans:2},
-  {q:"¼ de 20, c'est :", choices:["4","5","6","8"], ans:1},
-  {q:"75 ÷ 5 = ?", choices:["13","14","15","16"], ans:2},
-  {q:"Un sac de 36 bonbons est partagé en 4. Combien chacun reçoit-il?", choices:["7","8","9","10"], ans:2},
+  {q:"84 ÷ 4 = ?",choices:["20","21","22","24"],ans:1},
+  {q:"97 ÷ 3 = ? reste ?",choices:["32 reste 1","31 reste 2","32 reste 2","33 reste 0"],ans:0},
+  {q:"½ d'un groupe de 16, c'est :",choices:["4","6","8","10"],ans:2},
+  {q:"⅓ de 12, c'est :",choices:["2","3","4","6"],ans:2},
+  {q:"¼ de 20, c'est :",choices:["4","5","6","8"],ans:1},
+  {q:"75 ÷ 5 = ?",choices:["13","14","15","16"],ans:2},
+  {q:"Un sac de 36 bonbons est partagé en 4. Combien chacun reçoit-il?",choices:["7","8","9","10"],ans:2},
 ],
 12:[
-  {q:"Quel nombre est divisible par 2?", choices:["37","51","64","79"], ans:2},
-  {q:"Un nombre est divisible par 5 si :", choices:["Il se termine par 2 ou 4","Il se termine par 0 ou 5","Il est pair","Sa somme de chiffres est 5"], ans:1},
-  {q:"9 est un multiple de :", choices:["2","4","3","6"], ans:2},
-  {q:"Quel nombre est divisible par 10?", choices:["105","110","115","111"], ans:1},
-  {q:"Un nombre est pair si :", choices:["Il se termine par 1,3,5,7 ou 9","Il se termine par 0,2,4,6 ou 8","Il est divisible par 3","Il est un multiple de 5"], ans:1},
-  {q:"Parmi ces nombres, lequel est divisible par 3?", choices:["13","23","33","43"], ans:2},
-  {q:"72 est divisible par :", choices:["5 seulement","2 et 3","7 seulement","11"], ans:1},
+  {q:"Quel nombre est divisible par 2?",choices:["37","51","64","79"],ans:2},
+  {q:"Un nombre est divisible par 5 si :",choices:["Il se termine par 2 ou 4","Il se termine par 0 ou 5","Il est pair","Sa somme de chiffres est 5"],ans:1},
+  {q:"9 est un multiple de :",choices:["2","4","3","6"],ans:2},
+  {q:"Quel nombre est divisible par 10?",choices:["105","110","115","111"],ans:1},
+  {q:"Un nombre est pair si :",choices:["Il se termine par 1,3,5,7 ou 9","Il se termine par 0,2,4,6 ou 8","Il est divisible par 3","Il est un multiple de 5"],ans:1},
+  {q:"Parmi ces nombres, lequel est divisible par 3?",choices:["13","23","33","43"],ans:2},
+  {q:"72 est divisible par :",choices:["5 seulement","2 et 3","7 seulement","11"],ans:1},
 ],
 13:[
-  {q:"Dans la fraction ¾, que représente le 3?", choices:["Le dénominateur","Le numérateur","Le total","La moitié"], ans:1},
-  {q:"Dans la fraction ²⁄₅, combien de parties sont coloriées?", choices:["5","2","3","7"], ans:1},
-  {q:"Comment lit-on ⅔?", choices:["Deux tiers","Trois demis","Deux sixièmes","Six et deux"], ans:0},
-  {q:"Quel est le dénominateur de 5/8?", choices:["5","8","13","3"], ans:1},
-  {q:"Quelle fraction représente «trois quarts»?", choices:["4/3","3/4","1/4","3/3"], ans:1},
-  {q:"Une pizza coupée en 6 parts : tu en manges 2. Quelle fraction as-tu mangée?", choices:["2/8","6/2","2/6","4/6"], ans:2},
-  {q:"Le dénominateur indique :", choices:["Le nombre de parties prises","Le nombre total de parties égales","La moitié de la fraction","Le double du numérateur"], ans:1},
+  {q:"Dans la fraction ¾, que représente le 3?",choices:["Le dénominateur","Le numérateur","Le total","La moitié"],ans:1},
+  {q:"Dans la fraction ²⁄₅, combien de parties sont coloriées?",choices:["5","2","3","7"],ans:1},
+  {q:"Comment lit-on ⅔?",choices:["Deux tiers","Trois demis","Deux sixièmes","Six et deux"],ans:0},
+  {q:"Quel est le dénominateur de 5/8?",choices:["5","8","13","3"],ans:1},
+  {q:"Quelle fraction représente «trois quarts»?",choices:["4/3","3/4","1/4","3/3"],ans:1},
+  {q:"Une pizza coupée en 6 parts : tu en manges 2. Quelle fraction as-tu mangée?",choices:["2/8","6/2","2/6","4/6"],ans:2},
+  {q:"Le dénominateur indique :",choices:["Le nombre de parties prises","Le nombre total de parties égales","La moitié de la fraction","Le double du numérateur"],ans:1},
 ],
 14:[
-  {q:"Un rectangle divisé en 4 parties égales, 3 sont coloriées. Quelle fraction est coloriée?", choices:["1/4","3/4","4/3","3/3"], ans:1},
-  {q:"Partager un gâteau en 8 parts égales et en prendre 5, c'est :", choices:["5/5","8/5","5/8","3/8"], ans:2},
-  {q:"Quelle fraction représente la moitié?", choices:["1/4","2/3","1/2","3/6"], ans:[2,3]},
-  {q:"6 ÷ 3 peut aussi s'écrire :", choices:["3/6","6/3","1/3","2/3"], ans:1},
-  {q:"Représenter 3/4, c'est colorier __ partie(s) sur __.", choices:["4 sur 3","1 sur 4","3 sur 4","3 sur 3"], ans:2},
-  {q:"Partager 12 en 3 groupes égaux donne :", choices:["4 par groupe","3 par groupe","6 par groupe","12 par groupe"], ans:0},
-  {q:"La fraction 2/5 signifie :", choices:["5 parties sur 2","2 parties sur 5 parties égales","2 entiers et 5","5 moins 2"], ans:1},
+  {q:"Un rectangle divisé en 4 parties égales, 3 sont coloriées. Quelle fraction est coloriée?",choices:["1/4","3/4","4/3","3/3"],ans:1},
+  {q:"Partager un gâteau en 8 parts égales et en prendre 5, c'est :",choices:["5/5","8/5","5/8","3/8"],ans:2},
+  {q:"Quelle fraction représente la moitié?",choices:["1/4","2/3","1/2","3/6"],ans:[2,3]},
+  {q:"6 ÷ 3 peut aussi s'écrire :",choices:["3/6","6/3","1/3","2/3"],ans:1},
+  {q:"Représenter 3/4, c'est colorier __ partie(s) sur __.",choices:["4 sur 3","1 sur 4","3 sur 4","3 sur 3"],ans:2},
+  {q:"Partager 12 en 3 groupes égaux donne :",choices:["4 par groupe","3 par groupe","6 par groupe","12 par groupe"],ans:0},
+  {q:"La fraction 2/5 signifie :",choices:["5 parties sur 2","2 parties sur 5 parties égales","2 entiers et 5","5 moins 2"],ans:1},
 ],
 15:[
-  {q:"Laquelle est plus grande que ½?", choices:["1/4","2/6","3/5","2/8"], ans:2},
-  {q:"Laquelle est proche de 0?", choices:["4/5","1/8","3/4","5/6"], ans:1},
-  {q:"Ordonne : 1/4, 3/4, 1/2", choices:["3/4 < 1/2 < 1/4","1/4 < 1/2 < 3/4","1/2 < 1/4 < 3/4","1/4 < 3/4 < 1/2"], ans:1},
-  {q:"Laquelle est plus proche de 1?", choices:["1/6","2/8","7/8","3/7"], ans:2},
-  {q:"Laquelle est inférieure à ½?", choices:["3/5","4/6","2/3","3/8"], ans:3},
-  {q:"Compare : 2/4 __ 1/2", choices:["2/4 > 1/2","2/4 < 1/2","2/4 = 1/2","On ne peut pas comparer"], ans:2},
-  {q:"Ordonne du plus petit au plus grand : 5/6, 1/6, 3/6", choices:["1/6 < 3/6 < 5/6","3/6 < 1/6 < 5/6","5/6 < 3/6 < 1/6","1/6 < 5/6 < 3/6"], ans:0},
+  {q:"Laquelle est plus grande que ½?",choices:["1/4","2/6","3/5","2/8"],ans:2},
+  {q:"Laquelle est proche de 0?",choices:["4/5","1/8","3/4","5/6"],ans:1},
+  {q:"Ordonne : 1/4, 3/4, 1/2",choices:["3/4 < 1/2 < 1/4","1/4 < 1/2 < 3/4","1/2 < 1/4 < 3/4","1/4 < 3/4 < 1/2"],ans:1},
+  {q:"Laquelle est plus proche de 1?",choices:["1/6","2/8","7/8","3/7"],ans:2},
+  {q:"Laquelle est inférieure à ½?",choices:["3/5","4/6","2/3","3/8"],ans:3},
+  {q:"Compare : 2/4 __ 1/2",choices:["2/4 > 1/2","2/4 < 1/2","2/4 = 1/2","On ne peut pas comparer"],ans:2},
+  {q:"Ordonne du plus petit au plus grand : 5/6, 1/6, 3/6",choices:["1/6 < 3/6 < 5/6","3/6 < 1/6 < 5/6","5/6 < 3/6 < 1/6","1/6 < 5/6 < 3/6"],ans:0},
 ],
 16:[
-  {q:"¼ de 20 élèves, c'est :", choices:["4","5","6","8"], ans:1},
-  {q:"½ de 30, c'est :", choices:["10","12","15","20"], ans:2},
-  {q:"⅓ de 18, c'est :", choices:["3","6","9","18"], ans:1},
-  {q:"¾ de 24, c'est :", choices:["6","12","16","18"], ans:3},
-  {q:"Dans une classe de 28 élèves, ¼ portent des lunettes. Combien?", choices:["4","6","7","8"], ans:2},
-  {q:"⅔ de 12, c'est :", choices:["4","6","8","10"], ans:2},
-  {q:"Une boîte de 40 biscuits : on en mange ⅕. Combien a-t-on mangé?", choices:["5","6","8","10"], ans:2},
+  {q:"¼ de 20 élèves, c'est :",choices:["4","5","6","8"],ans:1},
+  {q:"½ de 30, c'est :",choices:["10","12","15","20"],ans:2},
+  {q:"⅓ de 18, c'est :",choices:["3","6","9","18"],ans:1},
+  {q:"¾ de 24, c'est :",choices:["6","12","16","18"],ans:3},
+  {q:"Dans une classe de 28 élèves, ¼ portent des lunettes. Combien?",choices:["4","6","7","8"],ans:2},
+  {q:"⅔ de 12, c'est :",choices:["4","6","8","10"],ans:2},
+  {q:"Une boîte de 40 biscuits : on en mange ⅕. Combien a-t-on mangé?",choices:["5","6","8","10"],ans:2},
 ],
 17:[
-  {q:"Comment lit-on 3,5?", choices:["Trois virgule cinq","Trente-cinq","Trois et cinq dixièmes","Cinq virgule trois"], ans:[0,2]},
-  {q:"Quel chiffre est aux dixièmes dans 6,47?", choices:["6","4","7","47"], ans:1},
-  {q:"0,1 = ?", choices:["1/10","1/100","10/100","1/1000"], ans:0},
-  {q:"Quel nombre vient après 2,9 si on compte par dixièmes?", choices:["2,10","3,0","2,91","3,1"], ans:1},
-  {q:"Quelle est la valeur du 8 dans 12,85?", choices:["8 entiers","8 centièmes","8 dixièmes","80"], ans:2},
-  {q:"Place 1,3 sur une droite numérique : il est entre :", choices:["0 et 1","1 et 2","2 et 3","3 et 4"], ans:1},
-  {q:"0,01 = ?", choices:["1/10","1/100","10/100","1/1000"], ans:1},
+  {q:"Comment lit-on 3,5?",choices:["Trois virgule cinq","Trente-cinq","Trois et cinq dixièmes","Cinq virgule trois"],ans:[0,2]},
+  {q:"Quel chiffre est aux dixièmes dans 6,47?",choices:["6","4","7","47"],ans:1},
+  {q:"0,1 = ?",choices:["1/10","1/100","10/100","1/1000"],ans:0},
+  {q:"Quel nombre vient après 2,9 si on compte par dixièmes?",choices:["2,10","3,0","2,91","3,1"],ans:1},
+  {q:"Quelle est la valeur du 8 dans 12,85?",choices:["8 entiers","8 centièmes","8 dixièmes","80"],ans:2},
+  {q:"Place 1,3 sur une droite numérique : il est entre :",choices:["0 et 1","1 et 2","2 et 3","3 et 4"],ans:1},
+  {q:"0,01 = ?",choices:["1/10","1/100","10/100","1/1000"],ans:1},
 ],
 18:[
-  {q:"Quel nombre décimal est représenté par 2 entiers et 7 dixièmes?", choices:["2,07","2,7","27","0,27"], ans:1},
-  {q:"Décompose 4,53 :", choices:["4 + 0,5 + 0,03","4 + 0,53","4,5 + 3","40 + 5 + 3"], ans:0},
-  {q:"Ordonne du plus petit : 1,5 ; 1,05 ; 1,50", choices:["1,05 < 1,5 = 1,50","1,5 < 1,05 < 1,50","1,05 < 1,50 < 1,5","1,5 < 1,50 < 1,05"], ans:0},
-  {q:"Quel est le plus grand : 3,4 ou 3,40?", choices:["3,4","3,40","Ils sont égaux","On ne peut pas comparer"], ans:2},
-  {q:"Représente 0,3 : tu colories __ carrés sur 10.", choices:["0","1","3","10"], ans:2},
-  {q:"Compare : 2,6 __ 2,60", choices:["2,6 > 2,60","2,6 < 2,60","2,6 = 2,60","Impossible à comparer"], ans:2},
-  {q:"Ordonne du plus grand : 0,9 ; 0,09 ; 0,99", choices:["0,99 > 0,9 > 0,09","0,9 > 0,99 > 0,09","0,09 > 0,9 > 0,99","0,9 > 0,09 > 0,99"], ans:0},
+  {q:"Quel nombre décimal est représenté par 2 entiers et 7 dixièmes?",choices:["2,07","2,7","27","0,27"],ans:1},
+  {q:"Décompose 4,53 :",choices:["4 + 0,5 + 0,03","4 + 0,53","4,5 + 3","40 + 5 + 3"],ans:0},
+  {q:"Ordonne du plus petit : 1,5 ; 1,05 ; 1,50",choices:["1,05 < 1,5 = 1,50","1,5 < 1,05 < 1,50","1,05 < 1,50 < 1,5","1,5 < 1,50 < 1,05"],ans:0},
+  {q:"Quel est le plus grand : 3,4 ou 3,40?",choices:["3,4","3,40","Ils sont égaux","On ne peut pas comparer"],ans:2},
+  {q:"Représente 0,3 : tu colories __ carrés sur 10.",choices:["0","1","3","10"],ans:2},
+  {q:"Compare : 2,6 __ 2,60",choices:["2,6 > 2,60","2,6 < 2,60","2,6 = 2,60","Impossible à comparer"],ans:2},
+  {q:"Ordonne du plus grand : 0,9 ; 0,09 ; 0,99",choices:["0,99 > 0,9 > 0,09","0,9 > 0,99 > 0,09","0,09 > 0,9 > 0,99","0,9 > 0,09 > 0,99"],ans:0},
 ],
 19:[
-  {q:"Arrondi à l'unité près, 3,7 ≈ ?", choices:["3","4","3,5","4,0"], ans:1},
-  {q:"Arrondi au dixième près, 5,64 ≈ ?", choices:["5,6","5,7","6,0","5,0"], ans:0},
-  {q:"Arrondi à l'unité près, 8,5 ≈ ?", choices:["8","9","8,5","8,0"], ans:1},
-  {q:"Arrondi au dixième près, 2,38 ≈ ?", choices:["2,3","2,4","2,0","3,0"], ans:0},
-  {q:"Arrondi à l'unité près, 6,49 ≈ ?", choices:["7","6","6,5","6,4"], ans:1},
-  {q:"Arrondi au dixième près, 7,95 ≈ ?", choices:["7,9","8,0","7,10","7,0"], ans:1},
-  {q:"Arrondi à l'unité près, 4,50 ≈ ?", choices:["4","5","4,5","4,0"], ans:1},
+  {q:"Arrondi à l'unité près, 3,7 ≈ ?",choices:["3","4","3,5","4,0"],ans:1},
+  {q:"Arrondi au dixième près, 5,64 ≈ ?",choices:["5,6","5,7","6,0","5,0"],ans:0},
+  {q:"Arrondi à l'unité près, 8,5 ≈ ?",choices:["8","9","8,5","8,0"],ans:1},
+  {q:"Arrondi au dixième près, 2,38 ≈ ?",choices:["2,3","2,4","2,0","3,0"],ans:0},
+  {q:"Arrondi à l'unité près, 6,49 ≈ ?",choices:["7","6","6,5","6,4"],ans:1},
+  {q:"Arrondi au dixième près, 7,95 ≈ ?",choices:["7,9","8,0","7,10","7,0"],ans:1},
+  {q:"Arrondi à l'unité près, 4,50 ≈ ?",choices:["4","5","4,5","4,0"],ans:1},
 ],
 20:[
-  {q:"3,4 + 2,5 = ?", choices:["5,9","5,8","6,0","5,7"], ans:0},
-  {q:"7,8 − 3,2 = ?", choices:["4,6","4,4","5,6","3,6"], ans:0},
-  {q:"1,25 + 2,30 = ?", choices:["3,55","3,50","3,45","3,65"], ans:0},
-  {q:"5,0 − 1,7 = ?", choices:["3,3","3,7","4,3","2,3"], ans:0},
-  {q:"Léa a 2,50 $ et reçoit 1,75 $. Combien a-t-elle en tout?", choices:["4,25 $","4,00 $","3,25 $","4,75 $"], ans:0},
-  {q:"4,60 − 2,35 = ?", choices:["2,25","2,15","2,35","2,45"], ans:0},
-  {q:"0,7 + 0,8 = ?", choices:["0,15","1,5","1,15","0,75"], ans:1},
+  {q:"3,4 + 2,5 = ?",choices:["5,9","5,8","6,0","5,7"],ans:0},
+  {q:"7,8 − 3,2 = ?",choices:["4,6","4,4","5,6","3,6"],ans:0},
+  {q:"1,25 + 2,30 = ?",choices:["3,55","3,50","3,45","3,65"],ans:0},
+  {q:"5,0 − 1,7 = ?",choices:["3,3","3,7","4,3","2,3"],ans:0},
+  {q:"Léa a 2,50 $ et reçoit 1,75 $. Combien a-t-elle en tout?",choices:["4,25 $","4,00 $","3,25 $","4,75 $"],ans:0},
+  {q:"4,60 − 2,35 = ?",choices:["2,25","2,15","2,35","2,45"],ans:0},
+  {q:"0,7 + 0,8 = ?",choices:["0,15","1,5","1,15","0,75"],ans:1},
 ],
 21:[
-  {q:"Une figure couvre 6 carrés-unités. Quelle est son aire?", choices:["6 cm","6 unités","6 unités carrées","6 périmètres"], ans:2},
-  {q:"Un rectangle de 4 carrés de long et 3 de large. Quelle est son aire?", choices:["7 u²","12 u²","14 u²","10 u²"], ans:1},
-  {q:"Quelle est l'aire d'un carré de 5 unités de côté?", choices:["10 u²","20 u²","25 u²","15 u²"], ans:2},
-  {q:"Deux figures ont la même aire si :", choices:["Elles ont la même forme","Elles couvrent le même nombre de carrés-unités","Elles ont le même périmètre","Elles sont côte à côte"], ans:1},
-  {q:"Une figure irrégulière couvre 9 carrés entiers. Son aire est :", choices:["9 unités","9 unités carrées","9 cm","9 périmètres"], ans:1},
-  {q:"Un rectangle de 6 unités × 2 unités a une aire de :", choices:["8 u²","10 u²","12 u²","16 u²"], ans:2},
-  {q:"Quelle est l'aire d'un carré de 3 unités de côté?", choices:["6 u²","9 u²","12 u²","3 u²"], ans:1},
+  {q:"Une figure couvre 6 carrés-unités. Quelle est son aire?",choices:["6 cm","6 unités","6 unités carrées","6 périmètres"],ans:2},
+  {q:"Un rectangle de 4 carrés de long et 3 de large. Quelle est son aire?",choices:["7 u²","12 u²","14 u²","10 u²"],ans:1},
+  {q:"Quelle est l'aire d'un carré de 5 unités de côté?",choices:["10 u²","20 u²","25 u²","15 u²"],ans:2},
+  {q:"Deux figures ont la même aire si :",choices:["Elles ont la même forme","Elles couvrent le même nombre de carrés-unités","Elles ont le même périmètre","Elles sont côte à côte"],ans:1},
+  {q:"Une figure irrégulière couvre 9 carrés entiers. Son aire est :",choices:["9 unités","9 unités carrées","9 cm","9 périmètres"],ans:1},
+  {q:"Un rectangle de 6 unités × 2 unités a une aire de :",choices:["8 u²","10 u²","12 u²","16 u²"],ans:2},
+  {q:"Quelle est l'aire d'un carré de 3 unités de côté?",choices:["6 u²","9 u²","12 u²","3 u²"],ans:1},
 ],
 22:[
-  {q:"Sur un plan cartésien, le point (3, 2) se trouve :", choices:["3 vers le haut, 2 vers la droite","3 vers la droite, 2 vers le haut","2 vers la droite, 3 vers le haut","3 vers la gauche, 2 vers le bas"], ans:1},
-  {q:"L'axe horizontal du plan cartésien s'appelle :", choices:["Axe des y","Axe des ordonnées","Axe des x","Axe vertical"], ans:2},
-  {q:"Le point d'origine a les coordonnées :", choices:["(1, 1)","(0, 1)","(1, 0)","(0, 0)"], ans:3},
-  {q:"Quel point est le plus à droite : (2,5), (4,3) ou (1,7)?", choices:["(2,5)","(4,3)","(1,7)","Ils sont tous pareils"], ans:1},
-  {q:"Un point a x=0 et y=5. Il est situé :", choices:["Sur l'axe des x","Sur l'axe des y","À l'origine","En dehors du plan"], ans:1},
-  {q:"Pour trouver un point, on lit d'abord :", choices:["La valeur de y","La valeur de x","La valeur la plus grande","La valeur la plus petite"], ans:1},
-  {q:"Le point (5, 0) est situé :", choices:["Sur l'axe des y","Sur l'axe des x","À l'origine","En dehors du plan"], ans:1},
+  {q:"Sur un plan cartésien, le point (3, 2) se trouve :",choices:["3 vers le haut, 2 vers la droite","3 vers la droite, 2 vers le haut","2 vers la droite, 3 vers le haut","3 vers la gauche, 2 vers le bas"],ans:1},
+  {q:"L'axe horizontal du plan cartésien s'appelle :",choices:["Axe des y","Axe des ordonnées","Axe des x","Axe vertical"],ans:2},
+  {q:"Le point d'origine a les coordonnées :",choices:["(1, 1)","(0, 1)","(1, 0)","(0, 0)"],ans:3},
+  {q:"Quel point est le plus à droite : (2,5), (4,3) ou (1,7)?",choices:["(2,5)","(4,3)","(1,7)","Ils sont tous pareils"],ans:1},
+  {q:"Un point a x=0 et y=5. Il est situé :",choices:["Sur l'axe des x","Sur l'axe des y","À l'origine","En dehors du plan"],ans:1},
+  {q:"Pour trouver un point, on lit d'abord :",choices:["La valeur de y","La valeur de x","La valeur la plus grande","La valeur la plus petite"],ans:1},
+  {q:"Le point (5, 0) est situé :",choices:["Sur l'axe des y","Sur l'axe des x","À l'origine","En dehors du plan"],ans:1},
 ],
 23:[
-  {q:"1 mètre = combien de centimètres?", choices:["10 cm","100 cm","1 000 cm","10 000 cm"], ans:1},
-  {q:"Quelle unité utilise-t-on pour mesurer la longueur d'une salle de classe?", choices:["Millimètre","Centimètre","Mètre","Kilomètre"], ans:2},
-  {q:"1 km = ?", choices:["100 m","1 000 m","10 000 m","100 000 m"], ans:1},
-  {q:"Estime la longueur d'un crayon. La meilleure estimation est :", choices:["2 mm","19 cm","2 m","19 m"], ans:1},
-  {q:"Laquelle est la plus courte : 3 m, 250 cm ou 0,5 km?", choices:["3 m","250 cm","0,5 km","Elles sont égales"], ans:1},
-  {q:"1 dm = ?", choices:["1 cm","10 cm","100 cm","1 000 cm"], ans:1},
-  {q:"Quelle est la bonne façon de mesurer une ligne droite avec une règle?", choices:["Commencer par n'importe quel bout","Aligner le 0 de la règle avec un bout de la ligne","Estimer sans mesurer","Utiliser la longueur de ta main"], ans:1},
+  {q:"1 mètre = combien de centimètres?",choices:["10 cm","100 cm","1 000 cm","10 000 cm"],ans:1},
+  {q:"Quelle unité utilise-t-on pour mesurer la longueur d'une salle de classe?",choices:["Millimètre","Centimètre","Mètre","Kilomètre"],ans:2},
+  {q:"1 km = ?",choices:["100 m","1 000 m","10 000 m","100 000 m"],ans:1},
+  {q:"Estime la longueur d'un crayon. La meilleure estimation est :",choices:["2 mm","19 cm","2 m","19 m"],ans:1},
+  {q:"Laquelle est la plus courte : 3 m, 250 cm ou 0,5 km?",choices:["3 m","250 cm","0,5 km","Elles sont égales"],ans:1},
+  {q:"1 dm = ?",choices:["1 cm","10 cm","100 cm","1 000 cm"],ans:1},
+  {q:"Quelle est la bonne façon de mesurer une ligne droite avec une règle?",choices:["Commencer par n'importe quel bout","Aligner le 0 de la règle avec un bout de la ligne","Estimer sans mesurer","Utiliser la longueur de ta main"],ans:1},
 ],
 24:[
-  {q:"100 cm = ?", choices:["1 mm","1 dm","1 m","1 km"], ans:2},
-  {q:"1 000 m = ?", choices:["1 cm","1 dm","1 m","1 km"], ans:3},
-  {q:"2 m = combien de cm?", choices:["20 cm","200 cm","2 000 cm","20 000 cm"], ans:1},
-  {q:"500 cm = combien de m?", choices:["0,5 m","5 m","50 m","5 000 m"], ans:1},
-  {q:"3 km = combien de m?", choices:["30 m","300 m","3 000 m","30 000 m"], ans:2},
-  {q:"150 cm = combien de m?", choices:["0,15 m","1,5 m","15 m","150 m"], ans:1},
-  {q:"10 dm = combien de m?", choices:["0,1 m","1 m","10 m","100 m"], ans:1},
+  {q:"100 cm = ?",choices:["1 mm","1 dm","1 m","1 km"],ans:2},
+  {q:"1 000 m = ?",choices:["1 cm","1 dm","1 m","1 km"],ans:3},
+  {q:"2 m = combien de cm?",choices:["20 cm","200 cm","2 000 cm","20 000 cm"],ans:1},
+  {q:"500 cm = combien de m?",choices:["0,5 m","5 m","50 m","5 000 m"],ans:1},
+  {q:"3 km = combien de m?",choices:["30 m","300 m","3 000 m","30 000 m"],ans:2},
+  {q:"150 cm = combien de m?",choices:["0,15 m","1,5 m","15 m","150 m"],ans:1},
+  {q:"10 dm = combien de m?",choices:["0,1 m","1 m","10 m","100 m"],ans:1},
 ],
 25:[
-  {q:"Quel est le périmètre d'un carré de côté 5 cm?", choices:["10 cm","20 cm","25 cm","15 cm"], ans:1},
-  {q:"Un rectangle mesure 8 cm × 3 cm. Quel est son périmètre?", choices:["11 cm","22 cm","24 cm","16 cm"], ans:1},
-  {q:"Périmètre = ?", choices:["longueur × largeur","somme de tous les côtés","base × hauteur","longueur + largeur"], ans:1},
-  {q:"Un triangle équilatéral a un côté de 6 cm. Périmètre = ?", choices:["12 cm","18 cm","24 cm","6 cm"], ans:1},
-  {q:"Le périmètre d'un rectangle 4 cm × 7 cm est :", choices:["28 cm","11 cm","22 cm","18 cm"], ans:2},
-  {q:"Un carré a un périmètre de 32 cm. Quel est son côté?", choices:["4 cm","6 cm","8 cm","16 cm"], ans:2},
-  {q:"Un rectangle a un périmètre de 20 cm et une longueur de 6 cm. Quelle est sa largeur?", choices:["4 cm","7 cm","14 cm","8 cm"], ans:0},
+  {q:"Quel est le périmètre d'un carré de côté 5 cm?",choices:["10 cm","20 cm","25 cm","15 cm"],ans:1},
+  {q:"Un rectangle mesure 8 cm × 3 cm. Quel est son périmètre?",choices:["11 cm","22 cm","24 cm","16 cm"],ans:1},
+  {q:"Périmètre = ?",choices:["longueur × largeur","somme de tous les côtés","base × hauteur","longueur + largeur"],ans:1},
+  {q:"Un triangle équilatéral a un côté de 6 cm. Périmètre = ?",choices:["12 cm","18 cm","24 cm","6 cm"],ans:1},
+  {q:"Le périmètre d'un rectangle 4 cm × 7 cm est :",choices:["28 cm","11 cm","22 cm","18 cm"],ans:2},
+  {q:"Un carré a un périmètre de 32 cm. Quel est son côté?",choices:["4 cm","6 cm","8 cm","16 cm"],ans:2},
+  {q:"Un rectangle a un périmètre de 20 cm et une longueur de 6 cm. Quelle est sa largeur?",choices:["4 cm","7 cm","14 cm","8 cm"],ans:0},
 ],
 26:[
-  {q:"Dans un diagramme à bandes, qu'est-ce que la hauteur d'une bande représente?", choices:["La couleur de la bande","La quantité ou la valeur","Le nom de la catégorie","Le titre du diagramme"], ans:1},
-  {q:"Un diagramme à ligne brisée est le mieux adapté pour montrer :", choices:["Des couleurs préférées","Une évolution dans le temps","Le nombre d'animaux dans un zoo","Des formes géométriques"], ans:1},
-  {q:"Sur un diagramme à bandes, l'axe vertical indique généralement :", choices:["Les catégories","Les couleurs","Les valeurs ou quantités","Les noms"], ans:2},
-  {q:"Quel type de diagramme utiliserais-tu pour comparer la météo de 5 villes?", choices:["Ligne brisée","Bandes","Pictogramme seulement","Aucun diagramme"], ans:1},
-  {q:"Pour montrer la croissance d'une plante sur 6 semaines, on choisit :", choices:["Un diagramme à bandes","Un diagramme à ligne brisée","Un tableau de multiplication","Un plan cartésien"], ans:1},
-  {q:"Sur un diagramme, l'axe horizontal indique :", choices:["Les valeurs","Les catégories ou le temps","La légende","Le titre"], ans:1},
-  {q:"Que signifie un point plus haut sur un diagramme à ligne brisée?", choices:["Une valeur plus petite","La même valeur","Une valeur plus grande","Aucune signification"], ans:2},
+  {q:"Dans un diagramme à bandes, qu'est-ce que la hauteur d'une bande représente?",choices:["La couleur de la bande","La quantité ou la valeur","Le nom de la catégorie","Le titre du diagramme"],ans:1},
+  {q:"Un diagramme à ligne brisée est le mieux adapté pour montrer :",choices:["Des couleurs préférées","Une évolution dans le temps","Le nombre d'animaux dans un zoo","Des formes géométriques"],ans:1},
+  {q:"Sur un diagramme à bandes, l'axe vertical indique généralement :",choices:["Les catégories","Les couleurs","Les valeurs ou quantités","Les noms"],ans:2},
+  {q:"Quel type de diagramme utiliserais-tu pour comparer la météo de 5 villes?",choices:["Ligne brisée","Bandes","Pictogramme seulement","Aucun diagramme"],ans:1},
+  {q:"Pour montrer la croissance d'une plante sur 6 semaines, on choisit :",choices:["Un diagramme à bandes","Un diagramme à ligne brisée","Un tableau de multiplication","Un plan cartésien"],ans:1},
+  {q:"Sur un diagramme, l'axe horizontal indique :",choices:["Les valeurs","Les catégories ou le temps","La légende","Le titre"],ans:1},
+  {q:"Que signifie un point plus haut sur un diagramme à ligne brisée?",choices:["Une valeur plus petite","La même valeur","Une valeur plus grande","Aucune signification"],ans:2},
 ],
 27:[
-  {q:"Combien de jours dans une année non bissextile?", choices:["354","360","365","366"], ans:2},
-  {q:"Combien de semaines dans une année?", choices:["48","52","54","60"], ans:1},
-  {q:"Quel mois a 28 ou 29 jours?", choices:["Janvier","Avril","Février","Novembre"], ans:2},
-  {q:"Combien de mois dans une année?", choices:["10","11","12","13"], ans:2},
-  {q:"Combien de jours dans la semaine?", choices:["5","6","7","8"], ans:2},
-  {q:"Une année bissextile a :", choices:["364 jours","365 jours","366 jours","367 jours"], ans:2},
-  {q:"Le 3e mois de l'année est :", choices:["Février","Mars","Avril","Janvier"], ans:1},
+  {q:"Combien de jours dans une année non bissextile?",choices:["354","360","365","366"],ans:2},
+  {q:"Combien de semaines dans une année?",choices:["48","52","54","60"],ans:1},
+  {q:"Quel mois a 28 ou 29 jours?",choices:["Janvier","Avril","Février","Novembre"],ans:2},
+  {q:"Combien de mois dans une année?",choices:["10","11","12","13"],ans:2},
+  {q:"Combien de jours dans la semaine?",choices:["5","6","7","8"],ans:2},
+  {q:"Une année bissextile a :",choices:["364 jours","365 jours","366 jours","367 jours"],ans:2},
+  {q:"Le 3e mois de l'année est :",choices:["Février","Mars","Avril","Janvier"],ans:1},
 ],
 28:[
-  {q:"De 9 h 15 à 10 h 45, quelle est la durée?", choices:["1 h 15","1 h 30","1 h 45","2 h"], ans:1},
-  {q:"1 heure = combien de minutes?", choices:["30","45","60","100"], ans:2},
-  {q:"De 14 h 30 à 16 h 00, la durée est :", choices:["1 h","1 h 30","2 h","2 h 30"], ans:1},
-  {q:"1 minute = combien de secondes?", choices:["30","60","100","120"], ans:1},
-  {q:"Un film commence à 19 h 20 et dure 1 h 40. Il finit à :", choices:["20 h 40","21 h 00","21 h 10","21 h 20"], ans:1},
-  {q:"De 8 h 00 à 11 h 30, la durée est :", choices:["2 h 30","3 h","3 h 30","4 h"], ans:2},
-  {q:"1 journée = combien d'heures?", choices:["12","20","24","48"], ans:2},
+  {q:"De 9 h 15 à 10 h 45, quelle est la durée?",choices:["1 h 15","1 h 30","1 h 45","2 h"],ans:1},
+  {q:"1 heure = combien de minutes?",choices:["30","45","60","100"],ans:2},
+  {q:"De 14 h 30 à 16 h 00, la durée est :",choices:["1 h","1 h 30","2 h","2 h 30"],ans:1},
+  {q:"1 minute = combien de secondes?",choices:["30","60","100","120"],ans:1},
+  {q:"Un film commence à 19 h 20 et dure 1 h 40. Il finit à :",choices:["20 h 40","21 h 00","21 h 10","21 h 20"],ans:1},
+  {q:"De 8 h 00 à 11 h 30, la durée est :",choices:["2 h 30","3 h","3 h 30","4 h"],ans:2},
+  {q:"1 journée = combien d'heures?",choices:["12","20","24","48"],ans:2},
 ],
 29:[
-  {q:"Quelle fraction est équivalente à 1/2?", choices:["1/4","2/6","2/4","3/8"], ans:2},
-  {q:"Quelle fraction est équivalente à 2/3?", choices:["3/4","4/6","2/4","3/6"], ans:1},
-  {q:"10/50 = ?", choices:["1/5","1/10","2/5","1/50"], ans:0},
-  {q:"25/100 est équivalent à :", choices:["1/2","1/4","1/5","2/5"], ans:1},
-  {q:"50/100 = ?", choices:["1/4","1/3","1/2","3/4"], ans:2},
-  {q:"Trouve une fraction équivalente à 3/4 :", choices:["4/5","6/8","3/8","5/6"], ans:1},
-  {q:"75/100 = ?", choices:["1/4","1/2","3/4","2/3"], ans:2},
+  {q:"Quelle fraction est équivalente à 1/2?",choices:["1/4","2/6","2/4","3/8"],ans:2},
+  {q:"Quelle fraction est équivalente à 2/3?",choices:["3/4","4/6","2/4","3/6"],ans:1},
+  {q:"10/50 = ?",choices:["1/5","1/10","2/5","1/50"],ans:0},
+  {q:"25/100 est équivalent à :",choices:["1/2","1/4","1/5","2/5"],ans:1},
+  {q:"50/100 = ?",choices:["1/4","1/3","1/2","3/4"],ans:2},
+  {q:"Trouve une fraction équivalente à 3/4 :",choices:["4/5","6/8","3/8","5/6"],ans:1},
+  {q:"75/100 = ?",choices:["1/4","1/2","3/4","2/3"],ans:2},
 ],
 30:[
-  {q:"1/4 en notation décimale, c'est :", choices:["0,14","0,25","0,4","4,0"], ans:1},
-  {q:"0,5 en fraction, c'est :", choices:["5/100","1/5","1/2","5/10"], ans:[2,3]},
-  {q:"25% = ?", choices:["1/2","1/4","1/5","3/4"], ans:1},
-  {q:"50% en fraction simplifiée, c'est :", choices:["2/4","50/100","1/2","5/10"], ans:2},
-  {q:"0,75 = ?% ", choices:["7,5%","75%","0,75%","750%"], ans:1},
-  {q:"3/4 = ?%", choices:["34%","43%","75%","80%"], ans:2},
-  {q:"100% représente :", choices:["La moitié","Un quart","Le tout entier","Trois quarts"], ans:2},
+  {q:"1/4 en notation décimale, c'est :",choices:["0,14","0,25","0,4","4,0"],ans:1},
+  {q:"0,5 en fraction, c'est :",choices:["5/100","1/5","1/2","5/10"],ans:[2,3]},
+  {q:"25% = ?",choices:["1/2","1/4","1/5","3/4"],ans:1},
+  {q:"50% en fraction simplifiée, c'est :",choices:["2/4","50/100","1/2","5/10"],ans:2},
+  {q:"0,75 = ?%",choices:["7,5%","75%","0,75%","750%"],ans:1},
+  {q:"3/4 = ?%",choices:["34%","43%","75%","80%"],ans:2},
+  {q:"100% représente :",choices:["La moitié","Un quart","Le tout entier","Trois quarts"],ans:2},
 ],
 31:[
-  {q:"Combien de faces a un cube?", choices:["4","5","6","8"], ans:2},
-  {q:"Quel solide a UNE SEULE base circulaire et se termine en pointe?", choices:["Cube","Pyramide carrée","Cône","Cylindre"], ans:2},
-  {q:"Le développement d'un solide, c'est :", choices:["Sa forme vue de haut","La figure obtenue si on déplie toutes ses faces","Son périmètre","Sa hauteur"], ans:1},
-  {q:"Combien de sommets a un prisme rectangulaire?", choices:["4","6","8","12"], ans:2},
-  {q:"Quel solide n'a aucun sommet?", choices:["Cube","Pyramide","Sphère","Prisme"], ans:2},
-  {q:"Une pyramide à base carrée a combien de faces triangulaires?", choices:["2","3","4","5"], ans:2},
-  {q:"Quel solide ressemble à une boîte de céréales?", choices:["Cube","Prisme rectangulaire","Cylindre","Cône"], ans:1},
+  {q:"Combien de faces a un cube?",choices:["4","5","6","8"],ans:2},
+  {q:"Quel solide a une seule base circulaire et se termine en pointe?",choices:["Cube","Pyramide carrée","Cône","Cylindre"],ans:2},
+  {q:"Le développement d'un solide, c'est :",choices:["Sa forme vue de haut","La figure obtenue si on déplie toutes ses faces","Son périmètre","Sa hauteur"],ans:1},
+  {q:"Combien de sommets a un prisme rectangulaire?",choices:["4","6","8","12"],ans:2},
+  {q:"Quel solide n'a aucun sommet?",choices:["Cube","Pyramide","Sphère","Prisme"],ans:2},
+  {q:"Une pyramide à base carrée a combien de faces triangulaires?",choices:["2","3","4","5"],ans:2},
+  {q:"Quel solide ressemble à une boîte de céréales?",choices:["Cube","Prisme rectangulaire","Cylindre","Cône"],ans:1},
 ],
 32:[
-  {q:"Le volume se mesure en :", choices:["cm","cm²","cm³","m²"], ans:2},
-  {q:"Un prisme de 3 × 2 × 4 unités-cubes a un volume de :", choices:["9 u³","14 u³","20 u³","24 u³"], ans:3},
-  {q:"Une frise, c'est :", choices:["Un solide à 6 faces","Un motif qui se répète en ligne","Une figure à 5 côtés","Un type de diagramme"], ans:1},
-  {q:"Un dallage, c'est :", choices:["Un solide","Un motif qui recouvre un plan sans espace ni chevauchement","Une droite numérique","Une fraction"], ans:1},
-  {q:"Combien de cubes-unités forment un prisme de 2 × 2 × 2?", choices:["4","6","8","12"], ans:2},
-  {q:"Un prisme de 5 × 3 × 2 unités a un volume de :", choices:["10 u³","16 u³","30 u³","25 u³"], ans:2},
-  {q:"Quelle figure peut carreler un plan sans espace? (dallage)", choices:["Cercle","Carré","Pentagone régulier","Hexagone régulier"], ans:[1,3]},
+  {q:"Le volume se mesure en :",choices:["cm","cm²","cm³","m²"],ans:2},
+  {q:"Un prisme de 3 × 2 × 4 unités-cubes a un volume de :",choices:["9 u³","14 u³","20 u³","24 u³"],ans:3},
+  {q:"Une frise, c'est :",choices:["Un solide à 6 faces","Un motif qui se répète en ligne","Une figure à 5 côtés","Un type de diagramme"],ans:1},
+  {q:"Un dallage, c'est :",choices:["Un solide","Un motif qui recouvre un plan sans espace ni chevauchement","Une droite numérique","Une fraction"],ans:1},
+  {q:"Combien de cubes-unités forment un prisme de 2 × 2 × 2?",choices:["4","6","8","12"],ans:2},
+  {q:"Un prisme de 5 × 3 × 2 unités a un volume de :",choices:["10 u³","16 u³","30 u³","25 u³"],ans:2},
+  {q:"Quelle figure peut carreler un plan sans espace? (dallage)",choices:["Cercle","Carré","Pentagone régulier","Hexagone régulier"],ans:[1,3]},
 ],
 33:[
-  {q:"Dans un sac : 3 rouges, 2 bleues. Quelle couleur est la plus probable?", choices:["Bleu","Rouge","Égal","Impossible à dire"], ans:1},
-  {q:"Laquelle est une probabilité impossible?", choices:["1/2","0/6","6/6","3/4"], ans:1},
-  {q:"Lancer un dé à 6 faces. Probabilité d'obtenir un 3?", choices:["1/3","1/6","1/2","3/6"], ans:1},
-  {q:"Qu'est-ce qu'un événement certain?", choices:["Il arrivera toujours","Il n'arrivera jamais","Il peut arriver","Il arrive souvent"], ans:0},
-  {q:"Un sac contient 4 billes rouges seulement. Probabilité de tirer rouge?", choices:["0/4","1/4","4/4","2/4"], ans:2},
-  {q:"Lancer une pièce de monnaie. Probabilité d'obtenir face?", choices:["0","1/4","1/2","1"], ans:2},
-  {q:"Quel mot décrit un événement qui ne peut pas se produire?", choices:["Probable","Certain","Impossible","Possible"], ans:2},
+  {q:"Dans un sac : 3 rouges, 2 bleues. Quelle couleur est la plus probable?",choices:["Bleu","Rouge","Égal","Impossible à dire"],ans:1},
+  {q:"Laquelle est une probabilité impossible?",choices:["1/2","0/6","6/6","3/4"],ans:1},
+  {q:"Lancer un dé à 6 faces. Probabilité d'obtenir un 3?",choices:["1/3","1/6","1/2","3/6"],ans:1},
+  {q:"Qu'est-ce qu'un événement certain?",choices:["Il arrivera toujours","Il n'arrivera jamais","Il peut arriver","Il arrive souvent"],ans:0},
+  {q:"Un sac contient 4 billes rouges seulement. Probabilité de tirer rouge?",choices:["0/4","1/4","4/4","2/4"],ans:2},
+  {q:"Lancer une pièce de monnaie. Probabilité d'obtenir face?",choices:["0","1/4","1/2","1"],ans:2},
+  {q:"Quel mot décrit un événement qui ne peut pas se produire?",choices:["Probable","Certain","Impossible","Possible"],ans:2},
 ],
 37:[
-  {q:"1 kg = ?", choices:["10 g","100 g","1 000 g","10 000 g"], ans:2},
-  {q:"1 litre = combien de millilitres?", choices:["10 mL","100 mL","1 000 mL","10 000 mL"], ans:2},
-  {q:"Quelle unité utilise-t-on pour mesurer la capacité d'une bouteille d'eau?", choices:["Gramme","Mètre","Litre","Centimètre"], ans:2},
-  {q:"Décompose 12 en facteurs premiers :", choices:["2 × 6","2 × 2 × 3","3 × 4","2 × 3 × 3"], ans:1},
-  {q:"Quels sont les facteurs premiers de 15?", choices:["1 × 15","3 × 5","5 × 3","3 et 5 sont les deux facteurs premiers"], ans:[1,2,3]},
-  {q:"2 kg = combien de grammes?", choices:["200 g","2 000 g","20 000 g","20 g"], ans:1},
-  {q:"500 mL = combien de litres?", choices:["5 L","0,5 L","50 L","0,05 L"], ans:1},
+  {q:"1 kg = ?",choices:["10 g","100 g","1 000 g","10 000 g"],ans:2},
+  {q:"1 litre = combien de millilitres?",choices:["10 mL","100 mL","1 000 mL","10 000 mL"],ans:2},
+  {q:"Quelle unité utilise-t-on pour mesurer la capacité d'une bouteille d'eau?",choices:["Gramme","Mètre","Litre","Centimètre"],ans:2},
+  {q:"Décompose 12 en facteurs premiers :",choices:["2 × 6","2 × 2 × 3","3 × 4","2 × 3 × 3"],ans:1},
+  {q:"Quels sont les facteurs premiers de 15?",choices:["1 × 15","3 × 5","5 × 3","3 et 5 sont les deux facteurs premiers"],ans:[1,2,3]},
+  {q:"2 kg = combien de grammes?",choices:["200 g","2 000 g","20 000 g","20 g"],ans:1},
+  {q:"500 mL = combien de litres?",choices:["5 L","0,5 L","50 L","0,05 L"],ans:1},
 ],
 };
 
-// Semaines sans questions spécifiques → message générique
-function getQuestions(sem) {
-  if (QUESTIONS[sem]) return QUESTIONS[sem];
-  return null;
-}
+// ══ ÉTAT ══
+let S = { eleveId:null, prenom:null, prog:{}, quizSem:null, qs:[], qi:0, score:0, teacherAuth:false };
 
-// ══════════════════════════════════════
-// ÉTAT
-// ══════════════════════════════════════
-let STATE = {
-  eleveId: null,
-  prenom: null,
-  progression: {},
-  quizSem: null,
-  questions: [],
-  qIdx: 0,
-  score: 0,
-  teacherAuth: false,
-};
-
-// ══════════════════════════════════════
-// NAVIGATION
-// ══════════════════════════════════════
 function show(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
 
-// ══════════════════════════════════════
-// FIREBASE : CHARGER / SAUVEGARDER
-// ══════════════════════════════════════
-async function chargerEleve(id) {
-  const snap = await getDoc(doc(db, "eleves", id));
-  if (snap.exists()) {
-    STATE.progression = snap.data().progression || {};
-  }
+async function sauvegarder() {
+  if (!S.eleveId) return;
+  await updateDoc(doc(db,"eleves",S.eleveId),{progression:S.prog,dernierAcces:serverTimestamp()});
 }
 
-async function sauvegarderProgression() {
-  if (!STATE.eleveId) return;
-  await updateDoc(doc(db, "eleves", STATE.eleveId), {
-    progression: STATE.progression,
-    dernierAcces: serverTimestamp()
-  });
-}
+// ══ AUTH GOOGLE ══
+onAuthStateChanged(auth, async user => {
+  if (user) await connecter(user);
+});
 
-// ══════════════════════════════════════
-// LOGIN
-// ══════════════════════════════════════
-document.getElementById('btn-login').addEventListener('click', async () => {
-  const prenom = document.getElementById('inp-prenom').value.trim();
-  const nom    = document.getElementById('inp-nom').value.trim().toUpperCase();
-  const code   = document.getElementById('inp-code').value.trim();
-  const errEl  = document.getElementById('err-login');
-
-  if (!prenom || !nom) { alert('Entre ton prénom et la première lettre de ton nom!'); return; }
-  if (code !== CODE_CLASSE) { errEl.style.display = 'block'; return; }
-  errEl.style.display = 'none';
-
-  const prenomFmt = prenom.charAt(0).toUpperCase() + prenom.slice(1).toLowerCase();
-  const eleveId   = (prenomFmt + nom).toLowerCase().replace(/[^a-z]/g,'') + '_mennais401';
-
-  STATE.eleveId = eleveId;
-  STATE.prenom  = prenomFmt + ' ' + nom + '.';
-
-  const ref  = doc(db, "eleves", eleveId);
+async function connecter(user) {
+  S.eleveId = user.uid;
+  S.prenom  = user.displayName || user.email;
+  const av = document.getElementById('user-avatar');
+  if (user.photoURL) { av.src=user.photoURL; av.style.display='block'; }
+  const ref  = doc(db,"eleves",user.uid);
   const snap = await getDoc(ref);
   if (!snap.exists()) {
-    await setDoc(ref, {
-      prenom: prenomFmt,
-      initiale: nom,
-      nom_affiche: STATE.prenom,
-      classe: CODE_CLASSE,
-      creeLe: serverTimestamp(),
-      progression: {}
-    });
-    STATE.progression = {};
+    await setDoc(ref,{prenom:user.displayName||'',email:user.email||'',classe:CODE,creeLe:serverTimestamp(),progression:{}});
+    S.prog = {};
   } else {
-    STATE.progression = snap.data().progression || {};
+    S.prog = snap.data().progression || {};
   }
-
   show('screen-dash');
   renderDash();
-});
-
-['inp-prenom','inp-nom','inp-code'].forEach((id,i,arr) => {
-  document.getElementById(id).addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      if (i < arr.length - 1) document.getElementById(arr[i+1]).focus();
-      else document.getElementById('btn-login').click();
-    }
-  });
-});
-
-// ══════════════════════════════════════
-// TABLEAU DE BORD
-// ══════════════════════════════════════
-function renderDash() {
-  document.getElementById('welcome-txt').textContent = `Bonjour ${STATE.prenom} 👋`;
-
-  const prog  = STATE.progression;
-  const keys  = Object.keys(prog);
-  const done  = keys.length;
-  const scores = keys.map(k => prog[k].score);
-  const moy   = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : null;
-
-  document.getElementById('stat-done').textContent = done;
-  document.getElementById('stat-moy').textContent  = moy !== null ? moy + '%' : '—';
-
-  let html = '';
-  [1,2,3].forEach(etape => {
-    html += `<div class="etape-section">
-      <div class="etape-header">
-        <span class="etape-badge">Étape ${etape}</span>
-        <span class="etape-title-text">${['','Nombres, opérations et géométrie','Fractions, décimaux et mesures','Révision et consolidation'][etape]}</span>
-      </div>
-      <div class="notions-grid">`;
-    NOTIONS.filter(n => n.etape === etape).forEach(n => {
-      const p   = prog[n.sem];
-      const qs  = getQuestions(n.sem);
-      if (n.exam) {
-        html += `<div class="notion-card exam">
-          <div class="nc-sem">Semaine ${n.sem}</div>
-          <div class="nc-title">📋 ${n.titre}</div>
-        </div>`;
-      } else if (!qs) {
-        html += `<div class="notion-card" style="opacity:0.5;cursor:not-allowed;">
-          <div class="nc-sem">Semaine ${n.sem}</div>
-          <div class="nc-title">${n.titre}</div>
-          <span class="score-pill" style="background:#f1efe8;color:#888;border-color:#ccc;">À venir</span>
-        </div>`;
-      } else {
-        const pillCls = p ? (p.score>=80?'':'amber') : '';
-        const pillRedCls = p && p.score<60 ? 'red' : '';
-        html += `<div class="notion-card ${p?'done':''}" data-sem="${n.sem}">
-          <div class="nc-sem">Semaine ${n.sem}</div>
-          <div class="nc-title">${n.titre}</div>
-          ${p ? `<span class="score-pill ${pillRedCls||pillCls}">${p.score}% — ${p.date}</span>` : ''}
-        </div>`;
-      }
-    });
-    html += '</div></div>';
-  });
-
-  document.getElementById('notions-container').innerHTML = html;
-  document.querySelectorAll('.notion-card[data-sem]').forEach(card => {
-    card.addEventListener('click', () => startQuiz(parseInt(card.dataset.sem)));
-  });
 }
 
-document.getElementById('btn-logout').addEventListener('click', () => {
-  STATE.eleveId = null; STATE.prenom = null; STATE.progression = {};
+document.getElementById('btn-google').addEventListener('click', async () => {
+  const btn=document.getElementById('btn-google'), sp=document.getElementById('login-spinner'), err=document.getElementById('err-login');
+  btn.disabled=true; sp.style.display='block'; err.style.display='none';
+  try {
+    const r = await signInWithPopup(auth, provider);
+    await connecter(r.user);
+  } catch(e) {
+    console.error(e); err.style.display='block'; sp.style.display='none'; btn.disabled=false;
+  }
+});
+
+document.getElementById('btn-logout').addEventListener('click', async () => {
+  await signOut(auth);
+  S={eleveId:null,prenom:null,prog:{},quizSem:null,qs:[],qi:0,score:0,teacherAuth:false};
+  document.getElementById('user-avatar').style.display='none';
   show('screen-login');
 });
 
-// ══════════════════════════════════════
-// QUIZ
-// ══════════════════════════════════════
-function startQuiz(sem) {
-  const qs = getQuestions(sem);
-  if (!qs) return;
-  STATE.quizSem    = sem;
-  STATE.questions  = shuffle([...qs]);
-  STATE.qIdx       = 0;
-  STATE.score      = 0;
-  const notion = NOTIONS.find(n=>n.sem===sem);
-  document.getElementById('quiz-titre').textContent = notion.titre;
-  document.getElementById('quiz-sem').textContent   = `Semaine ${sem} — Étape ${notion.etape}`;
-  show('screen-quiz');
-  renderQuestion();
-}
-
-function shuffle(arr) {
-  for (let i = arr.length-1; i>0; i--) {
-    const j = Math.floor(Math.random()*(i+1));
-    [arr[i],arr[j]] = [arr[j],arr[i]];
-  }
-  return arr;
-}
-
-function renderQuestion() {
-  const q     = STATE.questions[STATE.qIdx];
-  const total = STATE.questions.length;
-  const pct   = (STATE.qIdx / total) * 100;
-  document.getElementById('prog-fill').style.width = pct + '%';
-
-  // Normalise les bonnes réponses en tableau
-  const goodAns = Array.isArray(q.ans) ? q.ans : [q.ans];
-
-  const html = `<div class="q-card">
-    <div class="q-num">Question ${STATE.qIdx+1} sur ${total}</div>
-    <div class="q-text">${q.q}</div>
-    <div class="choices">
-      ${q.choices.map((c,i) => `<button class="choice" data-i="${i}">${c}</button>`).join('')}
-    </div>
-    <div class="feedback" id="feedback"></div>
-    <button class="btn-next" id="btn-next">
-      ${STATE.qIdx+1 < total ? 'Question suivante →' : 'Voir mon résultat →'}
-    </button>
-  </div>`;
-  document.getElementById('quiz-zone').innerHTML = html;
-
-  document.querySelectorAll('.choice').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const i   = parseInt(btn.dataset.i);
-      const bon = goodAns.includes(i);
-      document.querySelectorAll('.choice').forEach(b => {
-        b.disabled = true;
-        if (goodAns.includes(parseInt(b.dataset.i))) b.classList.add('correct');
-      });
-      if (!bon) btn.classList.add('wrong');
-      if (bon) STATE.score++;
-      const fb = document.getElementById('feedback');
-      fb.style.display = 'block';
-      if (bon) {
-        fb.className = 'feedback bon';
-        fb.textContent = '✓ Bravo! Bonne réponse!';
+// ══ DASHBOARD ══
+function renderDash() {
+  document.getElementById('welcome-txt').textContent=`Bonjour ${S.prenom} 👋`;
+  const keys=Object.keys(S.prog), done=keys.length;
+  const sc=keys.map(k=>S.prog[k].score), moy=sc.length?Math.round(sc.reduce((a,b)=>a+b,0)/sc.length):null;
+  document.getElementById('stat-done').textContent=done;
+  document.getElementById('stat-moy').textContent=moy!==null?moy+'%':'—';
+  const ET=['','Nombres, opérations et géométrie','Fractions, décimaux et mesures','Révision et consolidation'];
+  let html='';
+  [1,2,3].forEach(e=>{
+    html+=`<div class="etape-section"><div class="etape-header"><span class="etape-badge">Étape ${e}</span><span class="etape-title-text">${ET[e]}</span></div><div class="notions-grid">`;
+    NOTIONS.filter(n=>n.etape===e).forEach(n=>{
+      const p=S.prog[n.sem], qs=Q[n.sem];
+      if(n.exam){
+        html+=`<div class="notion-card exam"><div class="nc-sem">Semaine ${n.sem}</div><div class="nc-title">📋 ${n.titre}</div></div>`;
+      } else if(!qs){
+        html+=`<div class="notion-card" style="opacity:0.5;cursor:not-allowed;"><div class="nc-sem">Semaine ${n.sem}</div><div class="nc-title">${n.titre}</div><span class="score-pill" style="background:#f1efe8;color:#888;border:1px solid #ccc;">À venir</span></div>`;
       } else {
-        fb.className = 'feedback mauvais';
-        const bonnesStr = goodAns.map(a => q.choices[a]).join(' ou ');
-        fb.textContent = `✗ Pas tout à fait. La bonne réponse : ${bonnesStr}`;
+        const pc=p?(p.score>=80?'pill-g':p.score>=60?'pill-a':'pill-r'):'';
+        html+=`<div class="notion-card ${p?'done':''}" data-sem="${n.sem}"><div class="nc-sem">Semaine ${n.sem}</div><div class="nc-title">${n.titre}</div>${p?`<span class="score-pill ${pc}">${p.score}% — ${p.date}</span>`:''}</div>`;
       }
-      document.getElementById('btn-next').style.display = 'inline-block';
     });
+    html+='</div></div>';
   });
-
-  document.getElementById('btn-next').addEventListener('click', () => {
-    STATE.qIdx++;
-    if (STATE.qIdx < STATE.questions.length) renderQuestion();
-    else afficherResultat();
-  });
+  document.getElementById('notions-container').innerHTML=html;
+  document.querySelectorAll('.notion-card[data-sem]').forEach(c=>c.addEventListener('click',()=>startQuiz(+c.dataset.sem)));
 }
 
-function afficherResultat() {
-  document.getElementById('prog-fill').style.width = '100%';
-  const pct     = Math.round((STATE.score / STATE.questions.length) * 100);
-  const dateStr = new Date().toLocaleDateString('fr-CA');
-  STATE.progression[STATE.quizSem] = { score: pct, date: dateStr };
-  sauvegarderProgression();
+// ══ QUIZ ══
+function startQuiz(sem) {
+  if(!Q[sem]) return;
+  S.quizSem=sem; S.qs=shuffle([...Q[sem]]); S.qi=0; S.score=0;
+  const n=NOTIONS.find(n=>n.sem===sem);
+  document.getElementById('quiz-titre').textContent=n.titre;
+  document.getElementById('quiz-sem').textContent=`Semaine ${sem} — Étape ${n.etape}`;
+  show('screen-quiz'); renderQ();
+}
 
-  let emoji, msg;
-  if (pct >= 90)      { emoji='🏆'; msg='Excellent! Tu maîtrises cette notion!'; }
-  else if (pct >= 80) { emoji='🎉'; msg='Très bien! Beau travail!'; }
-  else if (pct >= 60) { emoji='👍'; msg='Bon effort! Continue à pratiquer.'; }
-  else                { emoji='💪'; msg='Continue! La pratique mène à la perfection.'; }
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
-  document.getElementById('res-emoji').textContent = emoji;
-  document.getElementById('res-pct').textContent   = pct + '%';
-  document.getElementById('res-frac').textContent  = `${STATE.score} bonne${STATE.score>1?'s':''} réponse${STATE.score>1?'s':''} sur ${STATE.questions.length}`;
-  document.getElementById('res-msg').textContent   = msg;
+function renderQ(){
+  const q=S.qs[S.qi], tot=S.qs.length, good=Array.isArray(q.ans)?q.ans:[q.ans];
+  document.getElementById('prog-fill').style.width=(S.qi/tot*100)+'%';
+  document.getElementById('quiz-zone').innerHTML=`<div class="q-card">
+    <div class="q-num">Question ${S.qi+1} sur ${tot}</div>
+    <div class="q-text">${q.q}</div>
+    <div class="choices">${q.choices.map((c,i)=>`<button class="choice" data-i="${i}">${c}</button>`).join('')}</div>
+    <div class="feedback" id="fb"></div>
+    <button class="btn-next" id="bn">${S.qi+1<tot?'Question suivante →':'Voir mon résultat →'}</button>
+  </div>`;
+  document.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>{
+    const i=+b.dataset.i, bon=good.includes(i);
+    document.querySelectorAll('.choice').forEach(x=>{x.disabled=true;if(good.includes(+x.dataset.i))x.classList.add('correct');});
+    if(!bon)b.classList.add('wrong');
+    if(bon)S.score++;
+    const fb=document.getElementById('fb');
+    fb.style.display='block';
+    fb.className='feedback '+(bon?'bon':'mauvais');
+    fb.textContent=bon?'✓ Bravo! Bonne réponse!':'✗ Pas tout à fait. La bonne réponse : '+good.map(a=>q.choices[a]).join(' ou ');
+    document.getElementById('bn').style.display='inline-block';
+  }));
+  document.getElementById('bn').addEventListener('click',()=>{S.qi++;S.qi<S.qs.length?renderQ():showResult();});
+}
+
+function showResult(){
+  document.getElementById('prog-fill').style.width='100%';
+  const pct=Math.round(S.score/S.qs.length*100), d=new Date().toLocaleDateString('fr-CA');
+  S.prog[S.quizSem]={score:pct,date:d};
+  sauvegarder();
+  const [emoji,msg]=pct>=90?['🏆','Excellent! Tu maîtrises cette notion!']:pct>=80?['🎉','Très bien! Beau travail!']:pct>=60?['👍','Bon effort! Continue à pratiquer.']:['💪','Continue! La pratique mène à la perfection.'];
+  document.getElementById('res-emoji').textContent=emoji;
+  document.getElementById('res-pct').textContent=pct+'%';
+  document.getElementById('res-frac').textContent=`${S.score} bonne${S.score>1?'s':''} réponse${S.score>1?'s':''} sur ${S.qs.length}`;
+  document.getElementById('res-msg').textContent=msg;
   show('screen-result');
 }
 
-document.getElementById('btn-back-quiz').addEventListener('click', () => { show('screen-dash'); renderDash(); });
-document.getElementById('btn-retry').addEventListener('click', () => startQuiz(STATE.quizSem));
-document.getElementById('btn-to-dash').addEventListener('click', () => { show('screen-dash'); renderDash(); });
+document.getElementById('btn-back-quiz').addEventListener('click',()=>{show('screen-dash');renderDash();});
+document.getElementById('btn-retry').addEventListener('click',()=>startQuiz(S.quizSem));
+document.getElementById('btn-to-dash').addEventListener('click',()=>{show('screen-dash');renderDash();});
 
-// ══════════════════════════════════════
-// HUB ENSEIGNANTE
-// ══════════════════════════════════════
-document.getElementById('link-teacher').addEventListener('click', () => {
+// ══ HUB ENSEIGNANTE ══
+document.getElementById('link-teacher').addEventListener('click',()=>{
   show('screen-teacher');
-  if (STATE.teacherAuth) {
-    document.getElementById('pw-overlay-wrap').style.display = 'none';
-    chargerDonneesEnseignante();
-  }
+  if(S.teacherAuth){document.getElementById('pw-overlay-wrap').style.display='none';loadTeacher();}
 });
-
-document.getElementById('btn-pw').addEventListener('click', () => {
-  if (document.getElementById('inp-pw').value === MDP_ENSEIGNANTE) {
-    STATE.teacherAuth = true;
-    document.getElementById('pw-overlay-wrap').style.display = 'none';
-    chargerDonneesEnseignante();
-  } else {
-    document.getElementById('err-pw').style.display = 'block';
-  }
+document.getElementById('btn-pw').addEventListener('click',()=>{
+  if(document.getElementById('inp-pw').value===MDP){
+    S.teacherAuth=true;
+    document.getElementById('pw-overlay-wrap').style.display='none';
+    loadTeacher();
+  } else { document.getElementById('err-pw').style.display='block'; }
 });
-document.getElementById('inp-pw').addEventListener('keydown', e => {
-  if (e.key === 'Enter') document.getElementById('btn-pw').click();
-});
+document.getElementById('inp-pw').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btn-pw').click();});
+document.getElementById('link-back-to-login').addEventListener('click',()=>show('screen-login'));
+document.getElementById('btn-teacher-back').addEventListener('click',()=>show('screen-login'));
 
-document.getElementById('link-back-to-login').addEventListener('click', () => show('screen-login'));
-document.getElementById('btn-teacher-back').addEventListener('click', () => show('screen-login'));
-
-async function chargerDonneesEnseignante() {
-  document.getElementById('teacher-content').innerHTML = '<div class="loading">Chargement des données de la classe...</div>';
+async function loadTeacher(){
+  document.getElementById('teacher-content').innerHTML='<div class="loading">Chargement des données de la classe…</div>';
   try {
-    const snap = await getDocs(collection(db, "eleves"));
-    const eleves = [];
-    snap.forEach(d => {
-      const data = d.data();
-      if (data.classe === CODE_CLASSE) eleves.push({ id: d.id, ...data });
-    });
+    const snap=await getDocs(collection(db,"eleves"));
+    const eleves=[];
+    snap.forEach(d=>{const data=d.data();if(data.classe===CODE)eleves.push({id:d.id,...data});});
     renderTeacher(eleves);
-  } catch(e) {
-    document.getElementById('teacher-content').innerHTML = '<div class="loading">Erreur de chargement. Vérifiez vos règles Firestore.</div>';
+  } catch(e){
+    document.getElementById('teacher-content').innerHTML='<div class="loading">Erreur de chargement. Vérifiez vos règles Firestore.</div>';
   }
 }
 
-function renderTeacher(eleves) {
-  if (!eleves.length) {
-    document.getElementById('teacher-content').innerHTML = '<div class="loading">Aucun élève inscrit pour l\'instant.</div>';
-    return;
-  }
-
-  eleves.sort((a,b) => (a.prenom||'').localeCompare(b.prenom||''));
-
-  let rows = '';
-  eleves.forEach(e => {
-    const prog   = e.progression || {};
-    const keys   = Object.keys(prog);
-    const done   = keys.length;
-    const scores = keys.map(k => prog[k].score);
-    const moy    = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : null;
-    const moyBadge = moy === null ? '<span class="pill pill-gray">—</span>'
-      : moy >= 80 ? `<span class="pill pill-green">${moy}%</span>`
-      : moy >= 60 ? `<span class="pill pill-amber">${moy}%</span>`
-      : `<span class="pill pill-red">${moy}%</span>`;
-
-    const recents = keys.slice(-4).map(sem => {
-      const s = prog[sem].score;
-      const cls = s>=80?'pill-green':s>=60?'pill-amber':'pill-red';
-      return `<span class="pill ${cls}">Sem.${sem}: ${s}%</span>`;
-    }).join(' ');
-
-    rows += `<tr>
-      <td><strong>${e.nom_affiche || (e.prenom + ' ' + (e.initiale||''))}</strong></td>
-      <td>${done} / 37</td>
-      <td>${moyBadge}</td>
-      <td><div class="detail-row">${recents||'<span class="pill pill-gray">Aucune activité</span>'}</div></td>
+function renderTeacher(eleves){
+  if(!eleves.length){document.getElementById('teacher-content').innerHTML='<div class="loading">Aucun élève inscrit pour l\'instant.</div>';return;}
+  eleves.sort((a,b)=>(a.prenom||'').localeCompare(b.prenom||''));
+  let rows='';
+  eleves.forEach(e=>{
+    const prog=e.progression||{}, keys=Object.keys(prog);
+    const sc=keys.map(k=>prog[k].score), moy=sc.length?Math.round(sc.reduce((a,b)=>a+b,0)/sc.length):null;
+    const mb=moy===null?'<span class="pill pill-gray">—</span>':moy>=80?`<span class="pill pill-green">${moy}%</span>`:moy>=60?`<span class="pill pill-amber">${moy}%</span>`:`<span class="pill pill-red">${moy}%</span>`;
+    const rec=keys.slice(-4).map(s=>{const v=prog[s].score,c=v>=80?'pill-green':v>=60?'pill-amber':'pill-red';return`<span class="pill ${c}">Sem.${s}: ${v}%</span>`;}).join(' ');
+    rows+=`<tr>
+      <td><strong>${e.prenom||e.email||e.id}</strong>${e.email?`<br><span style="font-size:11px;color:var(--text-muted)">${e.email}</span>`:''}</td>
+      <td>${keys.length} / 37</td><td>${mb}</td>
+      <td><div class="detail-row">${rec||'<span class="pill pill-gray">Aucune activité</span>'}</div></td>
     </tr>`;
   });
-
-  document.getElementById('teacher-content').innerHTML = `
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th>Élève</th>
-          <th>Notions complétées</th>
-          <th>Score moyen</th>
-          <th>Dernières activités</th>
-        </tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>
-    <div class="note-info">
-      🟢 80% et + &nbsp;|&nbsp; 🟡 60–79% &nbsp;|&nbsp; 🔴 moins de 60%
-    </div>`;
+  document.getElementById('teacher-content').innerHTML=`
+    <div class="table-wrap"><table>
+      <thead><tr><th>Élève</th><th>Notions complétées</th><th>Score moyen</th><th>Dernières activités</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>
+    <div class="note-info">🟢 80% et + &nbsp;|&nbsp; 🟡 60–79% &nbsp;|&nbsp; 🔴 moins de 60%</div>`;
 }
 </script>
 </body>
